@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Services — Pulse IT Consulting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --surface-container-lowest:#060e20; --surface:#0b1326; --surface-container-low:#131b2e;
+  --surface-container:#171f33; --surface-container-high:#222a3d; --surface-container-highest:#2d3449;
+  --surface-bright:#31394d;
+  --on-surface:#dae2fd; --on-surface-variant:#c7c4d7; --outline:#908fa0; --outline-variant:#464554;
+  --primary:#c0c1ff; --secondary:#4cd7f6; --tertiary:#fbabff;
+  --neon-magenta:#ec0fff; --neon-magenta-bright:#ff3dff;
+  --success:#06d6f0; --warning:#ffc24b;
+  --gradient-heading:linear-gradient(180deg,#fbabff 0%,#ec0fff 100%);
+  --radius:0.25rem; --radius-md:0.375rem; --radius-lg:0.5rem; --radius-xl:0.75rem; --radius-full:9999px;
+  --margin-mobile:16px; --margin-desktop:48px; --container-max:1280px; --section-gap:96px;
+  --glass-fill:rgba(23,31,51,0.55); --glass-border:rgba(255,255,255,0.10);
+  --glass-blur:12px; --glass-blur-floating:24px;
+  --glow-cyan:0 0 16px rgba(76,215,246,0.45); --glow-magenta-sh:0 0 24px rgba(236,15,255,0.45);
+  --shadow-card:0 8px 30px rgba(0,0,0,0.45); --shadow-float:0 16px 50px rgba(0,0,0,0.55);
+  --ease-out:cubic-bezier(0.16,1,0.3,1); --ease-in-out:cubic-bezier(0.65,0,0.35,1);
+  --dur:220ms; --dur-slow:400ms;
+  --font-display:'Geist',system-ui,sans-serif;
+  --font-body:'Inter',system-ui,sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;background:var(--surface-container-lowest);color:var(--on-surface);font-family:var(--font-body)}
+.pit-site{position:relative;overflow-x:hidden}
+.pit-bg{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(60% 50% at 18% 0%,rgba(128,131,255,.22) 0%,transparent 60%),
+             radial-gradient(45% 40% at 88% 8%,rgba(236,15,255,.16) 0%,transparent 55%),
+             var(--surface-container-lowest)}
+main,.pit-nav,.pit-footer{position:relative;z-index:1}
+
+.pit-btn{font-family:var(--font-body);font-size:15px;font-weight:600;border-radius:var(--radius);
+  cursor:pointer;padding:13px 24px;border:1px solid transparent;transition:all var(--dur) var(--ease-out);
+  display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.pit-btn--neon{background:var(--neon-magenta);color:#fff;box-shadow:var(--glow-magenta-sh)}
+.pit-btn--neon:hover{background:var(--neon-magenta-bright);box-shadow:0 0 32px rgba(236,15,255,.6)}
+.pit-btn--quiet{background:var(--surface-container-high);color:var(--on-surface);border-color:var(--glass-border)}
+.pit-btn--quiet:hover{background:var(--surface-bright);border-color:var(--secondary)}
+.pit-btn--mono{font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.06em;font-size:13px;font-weight:500}
+.pit-btn:active{transform:translateY(1px)}
+
+.pit-eyebrow{font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--tertiary);border:1px dashed rgba(236,15,255,.4);border-radius:var(--radius);padding:6px 12px;display:inline-block}
+.pit-monolink{font-family:var(--font-mono);font-size:12px;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--secondary);cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:gap var(--dur) var(--ease-out)}
+.pit-monolink:hover{gap:10px}
+.pit-logo{display:inline-flex;align-items:center;gap:11px;text-decoration:none}
+.pit-wm{font-family:var(--font-mono);font-weight:700;font-size:19px;letter-spacing:.04em;color:var(--on-surface)}
+.pit-wm span{color:var(--neon-magenta)}
+.pit-status{font-family:var(--font-mono);font-size:12px;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--on-surface-variant);display:inline-flex;align-items:center;gap:8px}
+.pit-pip{width:8px;height:8px;border-radius:50%;background:var(--success);box-shadow:0 0 8px var(--success);
+  animation:pit-pulse 1.8s var(--ease-in-out) infinite}
+@keyframes pit-pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* Nav */
+.pit-nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+  max-width:var(--container-max);margin:0 auto;padding:18px var(--margin-desktop);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.pit-navlinks{display:flex;gap:34px}
+.pit-navlink{font-family:var(--font-body);font-size:15px;color:var(--on-surface-variant);
+  text-decoration:none;transition:color var(--dur)}
+.pit-navlink:hover{color:var(--on-surface)}
+.pit-navlink.is-active{color:var(--tertiary);text-shadow:0 0 12px rgba(236,15,255,.5)}
+.pit-burger{display:none;background:none;border:none;color:var(--on-surface);cursor:pointer;padding:4px}
+.pit-mobilemenu{display:none}
+
+/* Page hero */
+.pit-page-hero{max-width:var(--container-max);margin:0 auto;padding:88px var(--margin-desktop) 72px;
+  border-bottom:1px solid var(--outline-variant)}
+.pit-page-hero h1{font-family:var(--font-display);font-size:clamp(40px,5.5vw,64px);font-weight:800;
+  line-height:1.04;letter-spacing:-.04em;margin:20px 0 24px;max-width:16ch}
+.pit-page-hero p{font-family:var(--font-body);font-size:18px;line-height:1.65;
+  color:var(--on-surface-variant);max-width:52ch;margin:0}
+
+/* Section wrapper */
+.pit-section{max-width:var(--container-max);margin:0 auto;padding:var(--section-gap) var(--margin-desktop)}
+.pit-section-head{margin-bottom:52px}
+.pit-section-head h2{font-family:var(--font-display);font-size:36px;font-weight:700;
+  letter-spacing:-.02em;margin:0 0 12px;line-height:1.1}
+.pit-section-head p{font-family:var(--font-body);font-size:16px;line-height:1.6;
+  color:var(--on-surface-variant);margin:0;max-width:52ch}
+
+/* Service cards */
+.svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.svc-card{background:var(--glass-fill);backdrop-filter:blur(var(--glass-blur));
+  -webkit-backdrop-filter:blur(var(--glass-blur));border:1px solid var(--glass-border);
+  border-radius:var(--radius-xl);padding:32px;display:flex;flex-direction:column;gap:16px;
+  transition:all var(--dur) var(--ease-out)}
+.svc-card:hover{border-color:rgba(236,15,255,.4);box-shadow:0 0 32px rgba(236,15,255,.12);transform:translateY(-3px)}
+.svc-card__top{display:flex;align-items:center;gap:14px}
+.svc-card__icon{width:48px;height:48px;border-radius:var(--radius-md);background:rgba(236,15,255,.1);
+  display:flex;align-items:center;justify-content:center;color:var(--tertiary);flex:none}
+.svc-card__tag{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--on-surface-variant)}
+.svc-card__title{font-family:var(--font-display);font-size:22px;font-weight:700;margin:0;letter-spacing:-.01em}
+.svc-card__body{font-family:var(--font-body);font-size:15px;line-height:1.6;
+  color:var(--on-surface-variant);margin:0;flex:1}
+.svc-card__list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+.svc-card__list li{font-family:var(--font-body);font-size:13.5px;color:var(--on-surface-variant);
+  display:flex;align-items:center;gap:10px}
+.svc-card__list li::before{content:'';width:5px;height:5px;border-radius:50%;flex:none;
+  background:var(--secondary);box-shadow:0 0 6px var(--secondary)}
+.svc-card__foot{padding-top:18px;border-top:1px solid var(--outline-variant);margin-top:auto}
+
+/* Process steps */
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  background:var(--outline-variant);border:1px solid var(--outline-variant);
+  border-radius:var(--radius-xl);overflow:hidden}
+.process-step{background:var(--glass-fill);backdrop-filter:blur(var(--glass-blur));
+  -webkit-backdrop-filter:blur(var(--glass-blur));padding:32px 26px;
+  display:flex;flex-direction:column;gap:10px}
+.process-step__num{font-family:var(--font-mono);font-size:28px;font-weight:700;
+  color:var(--tertiary);line-height:1;opacity:.6}
+.process-step__label{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--on-surface-variant)}
+.process-step__title{font-family:var(--font-display);font-size:17px;font-weight:700;
+  margin:6px 0 0;letter-spacing:-.01em}
+.process-step__body{font-family:var(--font-body);font-size:13.5px;line-height:1.6;
+  color:var(--on-surface-variant);margin:0}
+
+/* CTA */
+.pit-cta{position:relative;overflow:hidden;text-align:center;border-radius:var(--radius-xl);
+  border:1px solid var(--glass-border);padding:72px 32px;
+  background:linear-gradient(180deg,rgba(34,42,61,.6),rgba(11,19,38,.6));
+  backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur))}
+.pit-cta__glow{position:absolute;inset:0;
+  background:radial-gradient(50% 120% at 50% 0%,rgba(236,15,255,.22),transparent 60%);pointer-events:none}
+.pit-cta>*{position:relative}
+.pit-cta h2{font-family:var(--font-display);font-size:42px;font-weight:700;letter-spacing:-.02em;margin:0 0 16px}
+.pit-cta p{font-family:var(--font-body);font-size:16px;line-height:1.6;color:var(--on-surface-variant);margin:0}
+.pit-cta__actions{display:flex;gap:16px;justify-content:center;margin-top:28px;flex-wrap:wrap}
+
+/* Footer */
+.pit-footer{border-top:1px solid var(--outline-variant);margin-top:60px}
+.pit-footer__grid{max-width:var(--container-max);margin:0 auto;padding:56px var(--margin-desktop) 40px;
+  display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px}
+.pit-footer__brand p{font-family:var(--font-body);font-size:13.5px;line-height:1.6;
+  color:var(--on-surface-variant);max-width:30ch;margin:16px 0 0}
+.pit-footer__col h5{font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;
+  color:var(--on-surface-variant);margin:0 0 16px;font-weight:600}
+.pit-footer__col a{display:block;font-family:var(--font-body);font-size:14px;color:var(--on-surface);
+  text-decoration:none;margin-bottom:11px;cursor:pointer;transition:color var(--dur)}
+.pit-footer__col a:hover{color:var(--tertiary)}
+.pit-footer__icons{display:flex;gap:14px;margin-top:16px;color:var(--tertiary)}
+.pit-footer__base{max-width:var(--container-max);margin:0 auto;padding:20px var(--margin-desktop);
+  border-top:1px solid var(--outline-variant);display:flex;justify-content:space-between;align-items:center;
+  font-family:var(--font-mono);font-size:11.5px;letter-spacing:.06em;color:var(--on-surface-variant)}
+
+/* Modal */
+.pit-overlay{position:fixed;inset:0;z-index:100;background:rgba(6,14,32,.6);backdrop-filter:blur(4px);
+  display:flex;align-items:center;justify-content:center;padding:24px;animation:pit-fade var(--dur) var(--ease-out)}
+.pit-modal{position:relative;width:100%;max-width:440px;border-radius:var(--radius-xl);padding:32px;
+  background:rgba(23,31,51,.92);backdrop-filter:blur(var(--glass-blur-floating));
+  -webkit-backdrop-filter:blur(var(--glass-blur-floating));border:1px solid var(--glass-border);
+  box-shadow:var(--shadow-float);display:flex;flex-direction:column;gap:14px;
+  animation:pit-rise var(--dur-slow) var(--ease-out)}
+.pit-modal__x{position:absolute;top:18px;right:18px;background:none;border:none;
+  color:var(--on-surface-variant);cursor:pointer}
+.pit-modal__title{font-family:var(--font-display);font-size:26px;font-weight:700;letter-spacing:-.02em;margin:0}
+.pit-modal__sub{font-family:var(--font-body);font-size:14.5px;color:var(--on-surface-variant);margin:0}
+.pit-field{display:flex;flex-direction:column;gap:7px}
+.pit-field>span{font-family:var(--font-mono);font-size:11px;letter-spacing:.07em;color:var(--on-surface-variant)}
+.pit-field input,.pit-field textarea{background:var(--surface-container-lowest);color:var(--on-surface);
+  border:1px solid var(--outline-variant);border-radius:var(--radius);padding:11px 13px;
+  font-family:var(--font-body);font-size:15px;outline:none;resize:none;transition:all var(--dur)}
+.pit-field input:focus,.pit-field textarea:focus{border-color:var(--secondary);box-shadow:var(--glow-cyan)}
+.pit-modal__done{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;padding:16px 0}
+.chk-icon{width:48px;height:48px;border-radius:50%;background:rgba(6,214,240,.12);
+  display:flex;align-items:center;justify-content:center;color:var(--secondary)}
+@keyframes pit-fade{from{opacity:0}to{opacity:1}}
+@keyframes pit-rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+/* Pulse layer */
+.pit-pulse-layer{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.pit-pulse{position:absolute;border-radius:50%;
+  animation:pit-pulse-expand var(--pd,7s) ease-out infinite;animation-delay:var(--dd,0s)}
+.pit-pulse--v{background:radial-gradient(circle,rgba(128,131,255,.22) 0%,rgba(128,131,255,.06) 40%,transparent 70%)}
+.pit-pulse--m{background:radial-gradient(circle,rgba(236,15,255,.18) 0%,rgba(236,15,255,.05) 40%,transparent 70%)}
+.pit-pulse--c{background:radial-gradient(circle,rgba(76,215,246,.14) 0%,rgba(76,215,246,.04) 40%,transparent 70%)}
+@keyframes pit-pulse-expand{0%{transform:scale(.15);opacity:.9}55%{opacity:.4}100%{transform:scale(2.8);opacity:0}}
+@media(prefers-reduced-motion:reduce){.pit-pulse{animation:none;opacity:0}}
+
+@media(max-width:900px){
+  .pit-navlinks,.pit-nav-cta{display:none}
+  .pit-burger{display:inline-flex}
+  .pit-mobilemenu{display:flex;flex-direction:column;gap:18px;position:absolute;top:100%;left:0;right:0;
+    background:rgba(11,19,38,.96);backdrop-filter:blur(12px);
+    padding:24px var(--margin-desktop);border-bottom:1px solid var(--outline-variant)}
+  .pit-page-hero{padding:60px var(--margin-mobile) 48px}
+  .pit-section{padding:64px var(--margin-mobile)}
+  .svc-grid{grid-template-columns:1fr}
+  .process-grid{grid-template-columns:1fr 1fr}
+  .pit-footer__grid{grid-template-columns:1fr 1fr;gap:28px}
+  .pit-footer__base{flex-direction:column;gap:12px;text-align:center}
+}
+@media(max-width:560px){.process-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script type="text/babel">
+
+function Icon({ name, size=20, color, strokeWidth=2, style={} }) {
+  return <i data-lucide={name} style={{width:size,height:size,display:'inline-flex',color,...style}} data-stroke={strokeWidth}/>;
+}
+function useLucide() { React.useEffect(()=>{ if(window.lucide) window.lucide.createIcons(); }); }
+
+function PulseLayer() {
+  return (
+    <div className="pit-pulse-layer" aria-hidden="true">
+      <div className="pit-pulse pit-pulse--v" style={{width:700,height:700,top:-180,left:-180,'--pd':'8s','--dd':'0s'}}/>
+      <div className="pit-pulse pit-pulse--v" style={{width:700,height:700,top:-180,left:-180,'--pd':'8s','--dd':'2.7s'}}/>
+      <div className="pit-pulse pit-pulse--v" style={{width:700,height:700,top:-180,left:-180,'--pd':'8s','--dd':'5.4s'}}/>
+      <div className="pit-pulse pit-pulse--m" style={{width:560,height:560,top:-120,right:-120,'--pd':'9s','--dd':'1.1s'}}/>
+      <div className="pit-pulse pit-pulse--m" style={{width:560,height:560,top:-120,right:-120,'--pd':'9s','--dd':'4.1s'}}/>
+      <div className="pit-pulse pit-pulse--m" style={{width:560,height:560,top:-120,right:-120,'--pd':'9s','--dd':'7.1s'}}/>
+      <div className="pit-pulse pit-pulse--c" style={{width:440,height:440,top:'40%',left:'42%','--pd':'11s','--dd':'3.5s'}}/>
+      <div className="pit-pulse pit-pulse--c" style={{width:440,height:440,top:'40%',left:'42%','--pd':'11s','--dd':'8.8s'}}/>
+    </div>
+  );
+}
+
+const NAV_LINKS = [
+  {label:'Services',  href:'services.html'},
+  {label:'Innovation',href:null},
+  {label:'Portfolio', href:'portfolio.html'},
+  {label:'About',     href:'about.html'},
+];
+function Nav({ active, onCta }) {
+  const [open, setOpen] = React.useState(false);
+  const lp = l => l.href ? {href:l.href} : {href:'#',onClick:e=>e.preventDefault()};
+  return (
+    <header className="pit-nav">
+      <a className="pit-logo" href="index.html">
+        <img src="assets/logo-mark.svg" alt="" width="32" height="32" onError={e=>e.target.style.display='none'}/>
+        <span className="pit-wm">PULSE<span>_IT</span></span>
+      </a>
+      <nav className="pit-navlinks">
+        {NAV_LINKS.map(l=><a key={l.label} {...lp(l)} className={'pit-navlink'+(active===l.label?' is-active':'')}>{l.label}</a>)}
+      </nav>
+      <button className="pit-btn pit-btn--mono pit-nav-cta" onClick={onCta}>GET_STARTED</button>
+      <button className="pit-burger" onClick={()=>setOpen(!open)} aria-label="Menu">
+        <Icon name={open?'x':'menu'} size={22}/>
+      </button>
+      {open && (
+        <div className="pit-mobilemenu">
+          {NAV_LINKS.map(l=><a key={l.label} {...lp(l)} className="pit-navlink" onClick={()=>setOpen(false)}>{l.label}</a>)}
+          <button className="pit-btn pit-btn--mono" onClick={()=>{onCta();setOpen(false)}}>GET_STARTED</button>
+        </div>
+      )}
+    </header>
+  );
+}
+
+const SERVICES = [
+  { tag:'CLOUD_OPS',          icon:'cloud-cog',    title:'Cloud Solutions',
+    body:'Scalable multi-cloud orchestration across AWS, Azure, and GCP. Containerised workloads, zero-downtime deployments, and automated infrastructure that grows with your ambitions.',
+    features:['Multi-cloud architecture & migration','Kubernetes & container orchestration','IaC with Terraform & Pulumi'] },
+  { tag:'SECURE_PERIMETER',   icon:'shield-check', title:'Cybersecurity',
+    body:'Military-grade protection across endpoint, network, and application layers. Real-time threat detection, SIEM integration, and a compliance-ready security posture from day one.',
+    features:['Threat detection & SIEM integration','Penetration testing & red teaming','SOC 2 & ISO 27001 readiness'] },
+  { tag:'COGNITIVE_LAYER',    icon:'cpu',          title:'AI Integration',
+    body:'Inject autonomous intelligence into your existing workflows — from document processing to predictive analytics — turning repetitive operations into self-optimising systems.',
+    features:['Workflow & process automation','ML pipeline deployment & monitoring','LLM integration & fine-tuning'] },
+  { tag:'ALWAYS_ON',          icon:'headphones',   title:'Managed IT Support',
+    body:'24/7 monitored infrastructure, proactive incident response, and a dedicated helpdesk that treats every ticket as mission-critical. We become your IT department.',
+    features:['24/7 NOC monitoring & alerting','Priority incident response SLAs','Hardware & software lifecycle management'] },
+  { tag:'DIGITAL_PRESENCE',   icon:'layout',       title:'Website Design',
+    body:'High-performance websites built on modern frameworks. Precision design, optimised Core Web Vitals, and conversion-focused architecture that reflects the quality of your business.',
+    features:['React & Next.js development','Performance-first design systems','SEO & Core Web Vitals optimisation'] },
+  { tag:'ARCHITECTURE_REVIEW',icon:'network',      title:'Infrastructure Consulting',
+    body:'Strategic assessments of your existing stack — identifying bottlenecks, security gaps, and modernisation pathways. We blueprint the migration before the first byte moves.',
+    features:['Full stack audit & gap analysis','Migration roadmapping & cost modelling','Vendor selection & contract guidance'] },
+];
+
+function ServiceCard({ s }) {
+  const [hover, setHover] = React.useState(false);
+  return (
+    <div className={'svc-card'+(hover?' hover':'')}
+         onMouseEnter={()=>setHover(true)} onMouseLeave={()=>setHover(false)}>
+      <div className="svc-card__top">
+        <div className="svc-card__icon"><Icon name={s.icon} size={22}/></div>
+        <span className="svc-card__tag">{s.tag}</span>
+      </div>
+      <h3 className="svc-card__title">{s.title}</h3>
+      <p className="svc-card__body">{s.body}</p>
+      <ul className="svc-card__list">{s.features.map(f=><li key={f}>{f}</li>)}</ul>
+      <div className="svc-card__foot">
+        <a className="pit-monolink">LEARN_MORE <Icon name="arrow-right" size={13}/></a>
+      </div>
+    </div>
+  );
+}
+
+const PROCESS = [
+  {num:'01',label:'ASSESS',    title:'Deep-Dive Audit',      body:'We map your environment — infrastructure, security posture, and performance baselines — before recommending anything.'},
+  {num:'02',label:'ARCHITECT', title:'Design the Blueprint', body:'Our engineers design a solution architecture tailored to your constraints and objectives. No generic playbooks.'},
+  {num:'03',label:'DEPLOY',    title:'Precision Execution',  body:'Implementation with minimal disruption. We stage, test, and cut over with zero-downtime strategies wherever possible.'},
+  {num:'04',label:'MONITOR',   title:'Ongoing Vigilance',    body:'Post-deployment, we stay on. Continuous monitoring, proactive alerts, and quarterly reviews keep you ahead.'},
+];
+
+function Footer() {
+  return (
+    <footer className="pit-footer">
+      <div className="pit-footer__grid">
+        <div className="pit-footer__brand">
+          <a className="pit-logo" href="index.html">
+            <img src="assets/logo-mark.svg" alt="" width="30" height="30" onError={e=>e.target.style.display='none'}/>
+            <span className="pit-wm">PULSE<span>_IT</span></span>
+          </a>
+          <p>Advancing the standard of digital infrastructure through relentless innovation and unwavering security.</p>
+        </div>
+        {[{h:'NAVIGATION',ls:['Innovation Hub','Success Stories','Engineer Docs']},{h:'LEGAL & AUDIT',ls:['Privacy Policy','Terms of Service','Security Audit']}].map(c=>(
+          <div key={c.h} className="pit-footer__col"><h5>{c.h}</h5>{c.ls.map(l=><a key={l}>{l}</a>)}</div>
+        ))}
+        <div className="pit-footer__col">
+          <h5>CONTACT</h5><a>Contact Support</a>
+          <div className="pit-footer__icons"><Icon name="git-branch" size={18}/><Icon name="share-2" size={18}/><Icon name="network" size={18}/></div>
+        </div>
+      </div>
+      <div className="pit-footer__base">
+        <span>® 2026 PULSE_IT. SECURING THE FUTURE.</span>
+        <span className="pit-status"><span className="pit-pip"/>ALL NODES OPERATIONAL</span>
+      </div>
+    </footer>
+  );
+}
+
+function ContactModal({ open, onClose }) {
+  const [sent, setSent] = React.useState(false);
+  React.useEffect(()=>{ if(!open) setSent(false); },[open]);
+  if(!open) return null;
+  return (
+    <div className="pit-overlay" onClick={onClose}>
+      <div className="pit-modal" onClick={e=>e.stopPropagation()}>
+        <button className="pit-modal__x" onClick={onClose}><Icon name="x" size={18}/></button>
+        {!sent ? (<>
+          <span className="pit-eyebrow">INITIATE_CONTACT</span>
+          <h3 className="pit-modal__title">Talk to an Engineer</h3>
+          <p className="pit-modal__sub">Tell us where you are today. We'll map the migration.</p>
+          <label className="pit-field"><span>WORK_EMAIL</span><input type="email" placeholder="you@company.com"/></label>
+          <label className="pit-field"><span>WHAT_DO_YOU_NEED</span><textarea rows="3" placeholder="IT support, a new website, cloud migration…"/></label>
+          <button className="pit-btn pit-btn--neon pit-btn--mono" style={{width:'100%'}} onClick={()=>setSent(true)}>TRANSMIT_REQUEST</button>
+        </>) : (
+          <div className="pit-modal__done">
+            <span className="chk-icon"><Icon name="check" size={24}/></span>
+            <h3 className="pit-modal__title">Signal received.</h3>
+            <p className="pit-modal__sub">An engineer will reach out within one business day.</p>
+            <button className="pit-btn pit-btn--quiet" onClick={onClose}>Close</button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function App() {
+  const [modal, setModal] = React.useState(false);
+  useLucide();
+  return (
+    <div className="pit-site">
+      <div className="pit-bg"/>
+      <PulseLayer/>
+      <Nav active="Services" onCta={()=>setModal(true)}/>
+      <main>
+        <div className="pit-page-hero">
+          <span className="pit-eyebrow">OUR_SERVICES · FULL_STACK_IT</span>
+          <h1>Precision-Engineered<br/>Solutions</h1>
+          <p>From hardened cloud infrastructure to high-performance websites — Pulse IT delivers end-to-end technology services built for businesses that refuse to fall behind.</p>
+        </div>
+
+        <section className="pit-section">
+          <div className="svc-grid">
+            {SERVICES.map(s=><ServiceCard key={s.title} s={s}/>)}
+          </div>
+        </section>
+
+        <section className="pit-section" style={{paddingTop:0}}>
+          <div className="pit-section-head">
+            <h2>How We Work</h2>
+            <p>Every engagement follows the same disciplined process — because good outcomes don't happen by accident.</p>
+          </div>
+          <div className="process-grid">
+            {PROCESS.map(p=>(
+              <div key={p.num} className="process-step">
+                <div className="process-step__num">{p.num}</div>
+                <div className="process-step__label">{p.label}</div>
+                <h3 className="process-step__title">{p.title}</h3>
+                <p className="process-step__body">{p.body}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="pit-section" style={{paddingTop:0}}>
+          <div className="pit-cta">
+            <div className="pit-cta__glow"/>
+            <h2>Ready to Start?</h2>
+            <p>Tell us what you're dealing with. We'll tell you exactly how we'd fix it.</p>
+            <div className="pit-cta__actions">
+              <button className="pit-btn pit-btn--neon pit-btn--mono" onClick={()=>setModal(true)}>START_MIGRATION</button>
+              <button className="pit-btn pit-btn--quiet" onClick={()=>setModal(true)}>Talk to an Engineer</button>
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer/>
+      <ContactModal open={modal} onClose={()=>setModal(false)}/>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>

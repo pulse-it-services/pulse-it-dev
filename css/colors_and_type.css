@@ -1,0 +1,207 @@
+/* ============================================================================
+   PULSE IT CONSULTING — "Cybernetic Precision"
+   colors_and_type.css — foundational + semantic design tokens
+   ----------------------------------------------------------------------------
+   Aesthetic: high-contrast dark mode + modern glassmorphism. Deep obsidian
+   surfaces, neon-inflected accents (lavender / electric cyan / magenta).
+   A "command center" feel — calm, technical, premium.
+
+   Fonts are loaded from Google Fonts CDN (see @import below). They are NOT
+   self-hosted in /fonts yet — see README "Font substitution" note.
+   ============================================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  /* ---------------------------------------------------------------------- */
+  /* SURFACES — obsidian / deep navy stack (darkest → lightest)             */
+  /* ---------------------------------------------------------------------- */
+  --surface-container-lowest: #060e20;  /* true backdrop / page base       */
+  --surface:                  #0b1326;  /* default surface / background    */
+  --surface-container-low:    #131b2e;
+  --surface-container:        #171f33;  /* default card fill (solid)       */
+  --surface-container-high:   #222a3d;
+  --surface-container-highest:#2d3449;
+  --surface-bright:           #31394d;  /* raised hover fills              */
+  --surface-variant:          #2d3449;
+
+  /* On-surface text */
+  --on-surface:         #dae2fd;        /* primary text on dark            */
+  --on-surface-variant: #c7c4d7;        /* secondary / muted text          */
+  --outline:            #908fa0;        /* strong borders, icons           */
+  --outline-variant:    #464554;        /* hairline dividers               */
+
+  /* Inverse (rare: light chips on dark) */
+  --inverse-surface:    #dae2fd;
+  --inverse-on-surface: #283044;
+
+  /* ---------------------------------------------------------------------- */
+  /* BRAND — lavender primary, electric-cyan secondary, magenta tertiary    */
+  /* ---------------------------------------------------------------------- */
+  --primary:               #c0c1ff;     /* lavender — primary brand hue    */
+  --on-primary:            #1000a9;
+  --primary-container:     #8083ff;
+  --on-primary-container:  #0d0096;
+  --inverse-primary:       #494bd6;
+  --surface-tint:          #c0c1ff;
+
+  --secondary:             #4cd7f6;     /* electric cyan — signal / focus  */
+  --on-secondary:          #003640;
+  --secondary-container:   #03b5d3;
+  --on-secondary-container:#00424e;
+
+  --tertiary:              #fbabff;     /* magenta — high-signal accent    */
+  --on-tertiary:           #580065;
+  --tertiary-container:    #e14ef6;
+  --on-tertiary-container: #4d0059;
+
+  /* Neon — full-saturation action color used on the marketing site.
+     The spec calls for a purple→blue gradient primary button; the live
+     reference site pushes the magenta accent to full intensity for CTAs.
+     Both are first-class. */
+  --neon-magenta:          #ec0fff;
+  --neon-magenta-bright:   #ff3dff;
+  --neon-cyan:             #06d6f0;
+  --neon-violet:           #8083ff;
+
+  /* ---------------------------------------------------------------------- */
+  /* SYSTEM / STATUS                                                        */
+  /* ---------------------------------------------------------------------- */
+  --success:           #06d6f0;         /* cyan — operational / online     */
+  --on-success:        #00282f;
+  --warning:           #ffc24b;         /* amber                           */
+  --on-warning:        #3d2a00;
+  --error:             #ffb4ab;
+  --on-error:          #690005;
+  --error-container:   #93000a;
+  --on-error-container:#ffdad6;
+  --critical:          #d946ef;         /* magenta — critical alerts       */
+
+  /* ---------------------------------------------------------------------- */
+  /* SIGNATURE GRADIENTS                                                    */
+  /* ---------------------------------------------------------------------- */
+  --gradient-brand:    linear-gradient(135deg, #8083ff 0%, #4cd7f6 100%);
+  --gradient-neon:     linear-gradient(135deg, #ec0fff 0%, #8083ff 100%);
+  --gradient-heading:  linear-gradient(180deg, #fbabff 0%, #ec0fff 100%);
+  /* Ambient hero glow — radial bloom behind hero content / cards */
+  --glow-violet:       radial-gradient(60% 60% at 20% 0%, rgba(128,131,255,0.28) 0%, rgba(11,19,38,0) 70%);
+  --glow-magenta:      radial-gradient(50% 50% at 80% 20%, rgba(236,15,255,0.20) 0%, rgba(11,19,38,0) 70%);
+
+  /* ---------------------------------------------------------------------- */
+  /* RADII — "Soft-Tech": sharp but not dated                               */
+  /* ---------------------------------------------------------------------- */
+  --radius-sm:   0.125rem;  /* 2px  */
+  --radius:      0.25rem;   /* 4px  — inputs, buttons, chips (DEFAULT)      */
+  --radius-md:   0.375rem;  /* 6px  */
+  --radius-lg:   0.5rem;    /* 8px  — glass cards                          */
+  --radius-xl:   0.75rem;   /* 12px — large panels                         */
+  --radius-full: 9999px;    /* pills, status pips                          */
+
+  /* ---------------------------------------------------------------------- */
+  /* SPACING — 8px linear scale                                             */
+  /* ---------------------------------------------------------------------- */
+  --space-1:  4px;
+  --space-2:  8px;          /* base unit                                   */
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  24px;         /* gutter                                      */
+  --space-6:  32px;
+  --space-7:  48px;         /* desktop margin                              */
+  --space-8:  64px;
+  --space-9:  96px;
+  --space-10: 120px;        /* section gap                                 */
+
+  --container-max:   1280px;
+  --gutter:          24px;
+  --margin-mobile:   16px;
+  --margin-desktop:  48px;
+  --section-gap:     120px;
+
+  /* ---------------------------------------------------------------------- */
+  /* ELEVATION — depth via tonal luminance, blur & glow (not drop shadow)   */
+  /* ---------------------------------------------------------------------- */
+  --glass-fill:    rgba(23, 31, 51, 0.55);    /* surface @ ~55% opacity    */
+  --glass-fill-hi: rgba(34, 42, 61, 0.65);
+  --glass-border:  rgba(255, 255, 255, 0.10); /* 1px hairline edge         */
+  --glass-blur:    12px;
+  --glass-blur-floating: 24px;
+
+  --glow-primary:  0 0 22px rgba(128, 131, 255, 0.50);
+  --glow-cyan:     0 0 16px rgba(76, 215, 246, 0.45);
+  --glow-magenta-sh: 0 0 24px rgba(236, 15, 255, 0.45);
+  --shadow-card:   0 8px 30px rgba(0, 0, 0, 0.45);
+  --shadow-float:  0 16px 50px rgba(0, 0, 0, 0.55);
+
+  /* ---------------------------------------------------------------------- */
+  /* MOTION                                                                 */
+  /* ---------------------------------------------------------------------- */
+  --ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast:   140ms;
+  --dur:        220ms;
+  --dur-slow:   400ms;
+
+  /* ---------------------------------------------------------------------- */
+  /* TYPOGRAPHY — families                                                  */
+  /* ---------------------------------------------------------------------- */
+  --font-display: 'Geist', system-ui, sans-serif;       /* headlines       */
+  --font-body:    'Inter', system-ui, sans-serif;        /* body / UI       */
+  --font-mono:    'JetBrains Mono', ui-monospace, monospace; /* labels/data */
+}
+
+/* ============================================================================
+   SEMANTIC TYPE — apply these classes (or copy the rules) directly.
+   Headlines: Geist, tight tracking, heavy. Labels: mono, ALL-CAPS, tracked.
+   ============================================================================ */
+
+.display-lg {
+  font-family: var(--font-display);
+  font-size: 64px; font-weight: 800; line-height: 72px; letter-spacing: -0.04em;
+}
+.headline-xl {
+  font-family: var(--font-display);
+  font-size: 48px; font-weight: 700; line-height: 56px; letter-spacing: -0.02em;
+}
+.headline-xl-mobile {
+  font-family: var(--font-display);
+  font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: -0.01em;
+}
+.headline-md {
+  font-family: var(--font-display);
+  font-size: 24px; font-weight: 600; line-height: 32px; letter-spacing: -0.01em;
+}
+.title-sm {
+  font-family: var(--font-display);
+  font-size: 18px; font-weight: 600; line-height: 24px;
+}
+.body-lg {
+  font-family: var(--font-body);
+  font-size: 18px; font-weight: 400; line-height: 28px;
+}
+.body-md {
+  font-family: var(--font-body);
+  font-size: 16px; font-weight: 400; line-height: 24px;
+}
+.body-sm {
+  font-family: var(--font-body);
+  font-size: 14px; font-weight: 400; line-height: 20px;
+}
+.label-mono {
+  font-family: var(--font-mono);
+  font-size: 14px; font-weight: 500; line-height: 20px; letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.label-mono-sm {
+  font-family: var(--font-mono);
+  font-size: 12px; font-weight: 500; line-height: 16px; letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Gradient text helper for hero accent words */
+.text-gradient {
+  background: var(--gradient-heading);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}

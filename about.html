@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About — Pulse IT Consulting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --surface-container-lowest:#060e20; --surface:#0b1326; --surface-container-low:#131b2e;
+  --surface-container:#171f33; --surface-container-high:#222a3d; --surface-container-highest:#2d3449;
+  --surface-bright:#31394d;
+  --on-surface:#dae2fd; --on-surface-variant:#c7c4d7; --outline:#908fa0; --outline-variant:#464554;
+  --primary:#c0c1ff; --secondary:#4cd7f6; --tertiary:#fbabff;
+  --neon-magenta:#ec0fff; --neon-magenta-bright:#ff3dff;
+  --success:#06d6f0;
+  --gradient-heading:linear-gradient(180deg,#fbabff 0%,#ec0fff 100%);
+  --radius:0.25rem; --radius-md:0.375rem; --radius-lg:0.5rem; --radius-xl:0.75rem; --radius-full:9999px;
+  --margin-mobile:16px; --margin-desktop:48px; --container-max:1280px; --section-gap:96px;
+  --glass-fill:rgba(23,31,51,0.55); --glass-border:rgba(255,255,255,0.10);
+  --glass-blur:12px; --glass-blur-floating:24px;
+  --glow-cyan:0 0 16px rgba(76,215,246,0.45); --glow-magenta-sh:0 0 24px rgba(236,15,255,0.45);
+  --shadow-card:0 8px 30px rgba(0,0,0,0.45); --shadow-float:0 16px 50px rgba(0,0,0,0.55);
+  --ease-out:cubic-bezier(0.16,1,0.3,1); --ease-in-out:cubic-bezier(0.65,0,0.35,1);
+  --dur:220ms; --dur-slow:400ms;
+  --font-display:'Geist',system-ui,sans-serif;
+  --font-body:'Inter',system-ui,sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,monospace;
+}
+.text-gradient{background:var(--gradient-heading);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;background:var(--surface-container-lowest);color:var(--on-surface);font-family:var(--font-body)}
+.pit-site{position:relative;overflow-x:hidden}
+.pit-bg{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(60% 50% at 18% 0%,rgba(128,131,255,.22) 0%,transparent 60%),
+             radial-gradient(45% 40% at 88% 8%,rgba(236,15,255,.16) 0%,transparent 55%),
+             var(--surface-container-lowest)}
+main,.pit-nav,.pit-footer{position:relative;z-index:1}
+
+.pit-btn{font-family:var(--font-body);font-size:15px;font-weight:600;border-radius:var(--radius);
+  cursor:pointer;padding:13px 24px;border:1px solid transparent;transition:all var(--dur) var(--ease-out);
+  display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.pit-btn--neon{background:var(--neon-magenta);color:#fff;box-shadow:var(--glow-magenta-sh)}
+.pit-btn--neon:hover{background:var(--neon-magenta-bright);box-shadow:0 0 32px rgba(236,15,255,.6)}
+.pit-btn--quiet{background:var(--surface-container-high);color:var(--on-surface);border-color:var(--glass-border)}
+.pit-btn--quiet:hover{background:var(--surface-bright);border-color:var(--secondary)}
+.pit-btn--mono{font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.06em;font-size:13px;font-weight:500}
+.pit-btn:active{transform:translateY(1px)}
+
+.pit-eyebrow{font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--tertiary);border:1px dashed rgba(236,15,255,.4);border-radius:var(--radius);padding:6px 12px;display:inline-block}
+.pit-monolink{font-family:var(--font-mono);font-size:12px;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--secondary);cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:gap var(--dur) var(--ease-out)}
+.pit-monolink:hover{gap:10px}
+.pit-logo{display:inline-flex;align-items:center;gap:11px;text-decoration:none}
+.pit-wm{font-family:var(--font-mono);font-weight:700;font-size:19px;letter-spacing:.04em;color:var(--on-surface)}
+.pit-wm span{color:var(--neon-magenta)}
+.pit-status{font-family:var(--font-mono);font-size:12px;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--on-surface-variant);display:inline-flex;align-items:center;gap:8px}
+.pit-pip{width:8px;height:8px;border-radius:50%;background:var(--success);box-shadow:0 0 8px var(--success);
+  animation:pit-pulse 1.8s var(--ease-in-out) infinite}
+@keyframes pit-pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* Nav */
+.pit-nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+  max-width:var(--container-max);margin:0 auto;padding:18px var(--margin-desktop);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.pit-navlinks{display:flex;gap:34px}
+.pit-navlink{font-family:var(--font-body);font-size:15px;color:var(--on-surface-variant);
+  text-decoration:none;transition:color var(--dur)}
+.pit-navlink:hover{color:var(--on-surface)}
+.pit-navlink.is-active{color:var(--tertiary);text-shadow:0 0 12px rgba(236,15,255,.5)}
+.pit-burger{display:none;background:none;border:none;color:var(--on-surface);cursor:pointer;padding:4px}
+.pit-mobilemenu{display:none}
+
+/* Page hero — split layout */
+.about-hero{max-width:var(--container-max);margin:0 auto;
+  padding:88px var(--margin-desktop) 80px;
+  display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;
+  border-bottom:1px solid var(--outline-variant)}
+.about-hero__text{}
+.about-hero__text h1{font-family:var(--font-display);font-size:clamp(38px,5vw,60px);font-weight:800;
+  line-height:1.04;letter-spacing:-.04em;margin:20px 0 24px}
+.about-hero__text p{font-family:var(--font-body);font-size:17px;line-height:1.7;
+  color:var(--on-surface-variant);max-width:48ch;margin:0}
+.about-hero__panel{display:flex;flex-direction:column;gap:16px}
+.stat-card{background:var(--glass-fill);backdrop-filter:blur(var(--glass-blur));
+  -webkit-backdrop-filter:blur(var(--glass-blur));border:1px solid var(--glass-border);
+  border-radius:var(--radius-xl);padding:24px 28px;display:flex;flex-direction:column;gap:6px}
+.stat-card__num{font-family:var(--font-display);font-size:42px;font-weight:800;
+  letter-spacing:-.04em;line-height:1}
+.stat-card__num span{background:var(--gradient-heading);-webkit-background-clip:text;
+  background-clip:text;-webkit-text-fill-color:transparent}
+.stat-card__label{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--on-surface-variant)}
+.stat-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+/* Mission */
+.pit-section{max-width:var(--container-max);margin:0 auto;padding:var(--section-gap) var(--margin-desktop)}
+.mission-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.mission-text h2{font-family:var(--font-display);font-size:36px;font-weight:700;
+  letter-spacing:-.02em;margin:0 0 20px;line-height:1.1}
+.mission-text p{font-family:var(--font-body);font-size:16px;line-height:1.75;
+  color:var(--on-surface-variant);margin:0 0 18px}
+.mission-text p:last-child{margin:0}
+.mission-quote{background:var(--glass-fill);backdrop-filter:blur(var(--glass-blur));
+  -webkit-backdrop-filter:blur(var(--glass-blur));border:1px solid var(--glass-border);
+  border-radius:var(--radius-xl);padding:36px;display:flex;flex-direction:column;gap:20px;
+  border-left:3px solid var(--neon-magenta)}
+.mission-quote blockquote{font-family:var(--font-display);font-size:22px;font-weight:600;
+  line-height:1.4;letter-spacing:-.01em;margin:0;color:var(--on-surface)}
+.mission-quote cite{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--tertiary);font-style:normal}
+
+/* Values */
+.values-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.value-card{background:var(--glass-fill);backdrop-filter:blur(var(--glass-blur));
+  -webkit-backdrop-filter:blur(var(--glass-blur));border:1px solid var(--glass-border);
+  border-radius:var(--radius-xl);padding:32px;display:flex;flex-direction:column;gap:16px;
+  transition:all var(--dur) var(--ease-out)}
+.value-card:hover{border-color:rgba(236,15,255,.35);box-shadow:0 0 28px rgba(236,15,255,.1)}
+.value-card__icon{width:48px;height:48px;border-radius:var(--radius-md);
+  background:rgba(76,215,246,.1);display:flex;align-items:center;justify-content:center;
+  color:var(--secondary)}
+.value-card__tag{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--on-surface-variant)}
+.value-card__title{font-family:var(--font-display);font-size:22px;font-weight:700;
+  margin:0;letter-spacing:-.01em}
+.value-card__body{font-family:var(--font-body);font-size:15px;line-height:1.6;
+  color:var(--on-surface-variant);margin:0}
+
+/* Section head */
+.section-head{margin-bottom:48px}
+.section-head h2{font-family:var(--font-display);font-size:36px;font-weight:700;
+  letter-spacing:-.02em;margin:0 0 12px;line-height:1.1}
+.section-head p{font-family:var(--font-body);font-size:16px;line-height:1.6;
+  color:var(--on-surface-variant);margin:0;max-width:52ch}
+
+/* Team */
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.team-card{background:var(--glass-fill);backdrop-filter:blur(var(--glass-blur));
+  -webkit-backdrop-filter:blur(var(--glass-blur));border:1px solid var(--glass-border);
+  border-radius:var(--radius-xl);padding:28px;display:flex;flex-direction:column;
+  align-items:flex-start;gap:14px;transition:all var(--dur) var(--ease-out)}
+.team-card:hover{border-color:rgba(76,215,246,.35);box-shadow:0 0 24px rgba(76,215,246,.1)}
+.team-avatar{width:60px;height:60px;border-radius:var(--radius-full);
+  background:linear-gradient(135deg,rgba(236,15,255,.3),rgba(76,215,246,.2));
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--on-surface);
+  border:1px solid var(--glass-border)}
+.team-card__name{font-family:var(--font-display);font-size:18px;font-weight:700;margin:0;letter-spacing:-.01em}
+.team-card__role{font-family:var(--font-body);font-size:14px;color:var(--on-surface-variant);margin:0}
+.team-card__tag{font-family:var(--font-mono);font-size:11px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--secondary);background:rgba(76,215,246,.08);
+  border:1px solid rgba(76,215,246,.2);border-radius:var(--radius);padding:4px 10px}
+
+/* Timeline strip */
+.timeline{display:flex;gap:0;border:1px solid var(--outline-variant);
+  border-radius:var(--radius-xl);overflow:hidden;background:var(--outline-variant)}
+.timeline-item{background:var(--glass-fill);backdrop-filter:blur(var(--glass-blur));
+  -webkit-backdrop-filter:blur(var(--glass-blur));flex:1;padding:28px 24px;
+  display:flex;flex-direction:column;gap:8px}
+.timeline-item__year{font-family:var(--font-mono);font-size:22px;font-weight:700;
+  color:var(--tertiary);letter-spacing:-.02em}
+.timeline-item__event{font-family:var(--font-display);font-size:15px;font-weight:600;
+  margin:0;letter-spacing:-.01em}
+.timeline-item__detail{font-family:var(--font-body);font-size:13px;
+  color:var(--on-surface-variant);margin:0;line-height:1.5}
+
+/* CTA */
+.pit-cta{position:relative;overflow:hidden;text-align:center;border-radius:var(--radius-xl);
+  border:1px solid var(--glass-border);padding:72px 32px;
+  background:linear-gradient(180deg,rgba(34,42,61,.6),rgba(11,19,38,.6));
+  backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur))}
+.pit-cta__glow{position:absolute;inset:0;
+  background:radial-gradient(50% 120% at 50% 0%,rgba(236,15,255,.22),transparent 60%);pointer-events:none}
+.pit-cta>*{position:relative}
+.pit-cta h2{font-family:var(--font-display);font-size:42px;font-weight:700;letter-spacing:-.02em;margin:0 0 16px}
+.pit-cta p{font-family:var(--font-body);font-size:16px;line-height:1.6;color:var(--on-surface-variant);margin:0}
+.pit-cta__actions{display:flex;gap:16px;justify-content:center;margin-top:28px;flex-wrap:wrap}
+
+/* Footer */
+.pit-footer{border-top:1px solid var(--outline-variant);margin-top:60px}
+.pit-footer__grid{max-width:var(--container-max);margin:0 auto;padding:56px var(--margin-desktop) 40px;
+  display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px}
+.pit-footer__brand p{font-family:var(--font-body);font-size:13.5px;line-height:1.6;
+  color:var(--on-surface-variant);max-width:30ch;margin:16px 0 0}
+.pit-footer__col h5{font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;
+  color:var(--on-surface-variant);margin:0 0 16px;font-weight:600}
+.pit-footer__col a{display:block;font-family:var(--font-body);font-size:14px;color:var(--on-surface);
+  text-decoration:none;margin-bottom:11px;cursor:pointer;transition:color var(--dur)}
+.pit-footer__col a:hover{color:var(--tertiary)}
+.pit-footer__icons{display:flex;gap:14px;margin-top:16px;color:var(--tertiary)}
+.pit-footer__base{max-width:var(--container-max);margin:0 auto;padding:20px var(--margin-desktop);
+  border-top:1px solid var(--outline-variant);display:flex;justify-content:space-between;align-items:center;
+  font-family:var(--font-mono);font-size:11.5px;letter-spacing:.06em;color:var(--on-surface-variant)}
+
+/* Modal */
+.pit-overlay{position:fixed;inset:0;z-index:100;background:rgba(6,14,32,.6);backdrop-filter:blur(4px);
+  display:flex;align-items:center;justify-content:center;padding:24px;animation:pit-fade var(--dur) var(--ease-out)}
+.pit-modal{position:relative;width:100%;max-width:440px;border-radius:var(--radius-xl);padding:32px;
+  background:rgba(23,31,51,.92);backdrop-filter:blur(var(--glass-blur-floating));
+  -webkit-backdrop-filter:blur(var(--glass-blur-floating));border:1px solid var(--glass-border);
+  box-shadow:var(--shadow-float);display:flex;flex-direction:column;gap:14px;
+  animation:pit-rise var(--dur-slow) var(--ease-out)}
+.pit-modal__x{position:absolute;top:18px;right:18px;background:none;border:none;
+  color:var(--on-surface-variant);cursor:pointer}
+.pit-modal__title{font-family:var(--font-display);font-size:26px;font-weight:700;letter-spacing:-.02em;margin:0}
+.pit-modal__sub{font-family:var(--font-body);font-size:14.5px;color:var(--on-surface-variant);margin:0}
+.pit-field{display:flex;flex-direction:column;gap:7px}
+.pit-field>span{font-family:var(--font-mono);font-size:11px;letter-spacing:.07em;color:var(--on-surface-variant)}
+.pit-field input,.pit-field textarea{background:var(--surface-container-lowest);color:var(--on-surface);
+  border:1px solid var(--outline-variant);border-radius:var(--radius);padding:11px 13px;
+  font-family:var(--font-body);font-size:15px;outline:none;resize:none;transition:all var(--dur)}
+.pit-field input:focus,.pit-field textarea:focus{border-color:var(--secondary);box-shadow:var(--glow-cyan)}
+.pit-modal__done{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;padding:16px 0}
+.chk-icon{width:48px;height:48px;border-radius:50%;background:rgba(6,214,240,.12);
+  display:flex;align-items:center;justify-content:center;color:var(--secondary)}
+@keyframes pit-fade{from{opacity:0}to{opacity:1}}
+@keyframes pit-rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+/* Pulse layer */
+.pit-pulse-layer{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.pit-pulse{position:absolute;border-radius:50%;
+  animation:pit-pulse-expand var(--pd,7s) ease-out infinite;animation-delay:var(--dd,0s)}
+.pit-pulse--v{background:radial-gradient(circle,rgba(128,131,255,.22) 0%,rgba(128,131,255,.06) 40%,transparent 70%)}
+.pit-pulse--m{background:radial-gradient(circle,rgba(236,15,255,.18) 0%,rgba(236,15,255,.05) 40%,transparent 70%)}
+.pit-pulse--c{background:radial-gradient(circle,rgba(76,215,246,.14) 0%,rgba(76,215,246,.04) 40%,transparent 70%)}
+@keyframes pit-pulse-expand{0%{transform:scale(.15);opacity:.9}55%{opacity:.4}100%{transform:scale(2.8);opacity:0}}
+@media(prefers-reduced-motion:reduce){.pit-pulse{animation:none;opacity:0}}
+
+/* Responsive */
+@media(max-width:900px){
+  .pit-navlinks,.pit-nav-cta{display:none}
+  .pit-burger{display:inline-flex}
+  .pit-mobilemenu{display:flex;flex-direction:column;gap:18px;position:absolute;top:100%;left:0;right:0;
+    background:rgba(11,19,38,.96);backdrop-filter:blur(12px);
+    padding:24px var(--margin-desktop);border-bottom:1px solid var(--outline-variant)}
+  .about-hero{grid-template-columns:1fr;padding:60px var(--margin-mobile) 48px;gap:36px}
+  .pit-section{padding:64px var(--margin-mobile)}
+  .mission-grid{grid-template-columns:1fr}
+  .values-grid{grid-template-columns:1fr}
+  .team-grid{grid-template-columns:1fr}
+  .timeline{flex-direction:column}
+  .pit-footer__grid{grid-template-columns:1fr 1fr;gap:28px}
+  .pit-footer__base{flex-direction:column;gap:12px;text-align:center}
+}
+@media(max-width:640px){
+  .stat-row{grid-template-columns:1fr}
+  .values-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script type="text/babel">
+
+function Icon({ name, size=20, color, strokeWidth=2, style={} }) {
+  return <i data-lucide={name} style={{width:size,height:size,display:'inline-flex',color,...style}} data-stroke={strokeWidth}/>;
+}
+function useLucide() { React.useEffect(()=>{ if(window.lucide) window.lucide.createIcons(); }); }
+
+function PulseLayer() {
+  return (
+    <div className="pit-pulse-layer" aria-hidden="true">
+      <div className="pit-pulse pit-pulse--v" style={{width:700,height:700,top:-180,left:-180,'--pd':'8s','--dd':'0s'}}/>
+      <div className="pit-pulse pit-pulse--v" style={{width:700,height:700,top:-180,left:-180,'--pd':'8s','--dd':'2.7s'}}/>
+      <div className="pit-pulse pit-pulse--v" style={{width:700,height:700,top:-180,left:-180,'--pd':'8s','--dd':'5.4s'}}/>
+      <div className="pit-pulse pit-pulse--m" style={{width:560,height:560,top:-120,right:-120,'--pd':'9s','--dd':'1.1s'}}/>
+      <div className="pit-pulse pit-pulse--m" style={{width:560,height:560,top:-120,right:-120,'--pd':'9s','--dd':'4.1s'}}/>
+      <div className="pit-pulse pit-pulse--m" style={{width:560,height:560,top:-120,right:-120,'--pd':'9s','--dd':'7.1s'}}/>
+      <div className="pit-pulse pit-pulse--c" style={{width:440,height:440,top:'40%',left:'42%','--pd':'11s','--dd':'3.5s'}}/>
+      <div className="pit-pulse pit-pulse--c" style={{width:440,height:440,top:'40%',left:'42%','--pd':'11s','--dd':'8.8s'}}/>
+    </div>
+  );
+}
+
+const NAV_LINKS = [
+  {label:'Services',  href:'services.html'},
+  {label:'Innovation',href:null},
+  {label:'Portfolio', href:'portfolio.html'},
+  {label:'About',     href:'about.html'},
+];
+function Nav({ active, onCta }) {
+  const [open, setOpen] = React.useState(false);
+  const lp = l => l.href ? {href:l.href} : {href:'#',onClick:e=>e.preventDefault()};
+  return (
+    <header className="pit-nav">
+      <a className="pit-logo" href="index.html">
+        <img src="assets/logo-mark.svg" alt="" width="32" height="32" onError={e=>e.target.style.display='none'}/>
+        <span className="pit-wm">PULSE<span>_IT</span></span>
+      </a>
+      <nav className="pit-navlinks">
+        {NAV_LINKS.map(l=><a key={l.label} {...lp(l)} className={'pit-navlink'+(active===l.label?' is-active':'')}>{l.label}</a>)}
+      </nav>
+      <button className="pit-btn pit-btn--mono pit-nav-cta" onClick={onCta}>GET_STARTED</button>
+      <button className="pit-burger" onClick={()=>setOpen(!open)} aria-label="Menu">
+        <Icon name={open?'x':'menu'} size={22}/>
+      </button>
+      {open && (
+        <div className="pit-mobilemenu">
+          {NAV_LINKS.map(l=><a key={l.label} {...lp(l)} className="pit-navlink" onClick={()=>setOpen(false)}>{l.label}</a>)}
+          <button className="pit-btn pit-btn--mono" onClick={()=>{onCta();setOpen(false)}}>GET_STARTED</button>
+        </div>
+      )}
+    </header>
+  );
+}
+
+const VALUES = [
+  { icon:'target',   tag:'VALUE_01', title:'Precision',     body:'Every decision is deliberate. We audit, architect, then act — never in reverse order. Guesswork is a vulnerability.' },
+  { icon:'eye',      tag:'VALUE_02', title:'Transparency',  body:'No black boxes. You see exactly what we\'re building, why it\'s built that way, and what every line item costs.' },
+  { icon:'shield',   tag:'VALUE_03', title:'Resilience',    body:'We engineer systems that fail safely, recover instantly, and degrade gracefully under pressure. Uptime is a design constraint, not a goal.' },
+  { icon:'zap',      tag:'VALUE_04', title:'Velocity',      body:'Speed without chaos. We ship fast, we ship right, and we never sacrifice stability for a deadline. Momentum is methodical.' },
+];
+
+const TEAM = [
+  { initials:'AK', name:'Alex Kim',      role:'Founder & Lead Engineer',  tag:'CLOUD · SECURITY' },
+  { initials:'JM', name:'Jordan Mills',  role:'Head of Cybersecurity',    tag:'PENTEST · SIEM' },
+  { initials:'SR', name:'Sam Rivera',    role:'Web Design Lead',           tag:'REACT · PERF' },
+];
+
+const TIMELINE = [
+  { year:'2021', event:'Founded',       detail:'Started as a one-engineer consultancy serving local small businesses.' },
+  { year:'2022', event:'First Scale',   detail:'Expanded to a three-person team; launched managed IT support tier.' },
+  { year:'2023', event:'AI Practice',   detail:'Dedicated AI integration offering launched for mid-market clients.' },
+  { year:'2024', event:'Full Stack',    detail:'Web design studio merged in; now a full end-to-end IT partner.' },
+  { year:'2025', event:'Secured',       detail:'SOC 2 Type II attested. Security-forward posture company-wide.' },
+];
+
+function Footer() {
+  return (
+    <footer className="pit-footer">
+      <div className="pit-footer__grid">
+        <div className="pit-footer__brand">
+          <a className="pit-logo" href="index.html">
+            <img src="assets/logo-mark.svg" alt="" width="30" height="30" onError={e=>e.target.style.display='none'}/>
+            <span className="pit-wm">PULSE<span>_IT</span></span>
+          </a>
+          <p>Advancing the standard of digital infrastructure through relentless innovation and unwavering security.</p>
+        </div>
+        {[{h:'NAVIGATION',ls:['Innovation Hub','Success Stories','Engineer Docs']},{h:'LEGAL & AUDIT',ls:['Privacy Policy','Terms of Service','Security Audit']}].map(c=>(
+          <div key={c.h} className="pit-footer__col"><h5>{c.h}</h5>{c.ls.map(l=><a key={l}>{l}</a>)}</div>
+        ))}
+        <div className="pit-footer__col">
+          <h5>CONTACT</h5><a>Contact Support</a>
+          <div className="pit-footer__icons"><Icon name="git-branch" size={18}/><Icon name="share-2" size={18}/><Icon name="network" size={18}/></div>
+        </div>
+      </div>
+      <div className="pit-footer__base">
+        <span>® 2026 PULSE_IT. SECURING THE FUTURE.</span>
+        <span className="pit-status"><span className="pit-pip"/>ALL NODES OPERATIONAL</span>
+      </div>
+    </footer>
+  );
+}
+
+function ContactModal({ open, onClose }) {
+  const [sent, setSent] = React.useState(false);
+  React.useEffect(()=>{ if(!open) setSent(false); },[open]);
+  if(!open) return null;
+  return (
+    <div className="pit-overlay" onClick={onClose}>
+      <div className="pit-modal" onClick={e=>e.stopPropagation()}>
+        <button className="pit-modal__x" onClick={onClose}><Icon name="x" size={18}/></button>
+        {!sent ? (<>
+          <span className="pit-eyebrow">INITIATE_CONTACT</span>
+          <h3 className="pit-modal__title">Talk to an Engineer</h3>
+          <p className="pit-modal__sub">Tell us where you are today. We'll map the migration.</p>
+          <label className="pit-field"><span>WORK_EMAIL</span><input type="email" placeholder="you@company.com"/></label>
+          <label className="pit-field"><span>WHAT_DO_YOU_NEED</span><textarea rows="3" placeholder="IT support, a new website, cloud migration…"/></label>
+          <button className="pit-btn pit-btn--neon pit-btn--mono" style={{width:'100%'}} onClick={()=>setSent(true)}>TRANSMIT_REQUEST</button>
+        </>) : (
+          <div className="pit-modal__done">
+            <span className="chk-icon"><Icon name="check" size={24}/></span>
+            <h3 className="pit-modal__title">Signal received.</h3>
+            <p className="pit-modal__sub">An engineer will reach out within one business day.</p>
+            <button className="pit-btn pit-btn--quiet" onClick={onClose}>Close</button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function App() {
+  const [modal, setModal] = React.useState(false);
+  useLucide();
+  return (
+    <div className="pit-site">
+      <div className="pit-bg"/>
+      <PulseLayer/>
+      <Nav active="About" onCta={()=>setModal(true)}/>
+      <main>
+
+        {/* Hero */}
+        <div className="about-hero">
+          <div className="about-hero__text">
+            <span className="pit-eyebrow">ABOUT_PULSE_IT · EST. 2021</span>
+            <h1>Built on Precision.<br/><span className="text-gradient">Driven by Purpose.</span></h1>
+            <p>We're a small, deliberate team of engineers and designers who believe that most businesses deserve better technology than they're getting. So we set out to close that gap — one system at a time.</p>
+          </div>
+          <div className="about-hero__panel">
+            <div className="stat-row">
+              <div className="stat-card">
+                <div className="stat-card__num"><span>50+</span></div>
+                <div className="stat-card__label">Clients Supported</div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-card__num"><span>99.97%</span></div>
+                <div className="stat-card__label">Avg. Uptime SLA</div>
+              </div>
+            </div>
+            <div className="stat-card">
+              <div className="stat-card__num"><span>5 yr</span></div>
+              <div className="stat-card__label">In Operation — Security-First Since Day One</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Mission */}
+        <section className="pit-section">
+          <div className="mission-grid">
+            <div className="mission-text">
+              <span className="pit-eyebrow" style={{marginBottom:20,display:'inline-block'}}>MISSION_STATEMENT</span>
+              <h2>Why We Exist</h2>
+              <p>Most IT vendors sell you a product. We sell you an outcome. There's a meaningful difference between an MSP that reacts to tickets and a technology partner that prevents them — and too few businesses know what the latter even looks like.</p>
+              <p>Pulse IT was founded on the conviction that security, performance, and design aren't competing priorities. They're the same priority viewed from different angles. Every system we build treats all three as first-class constraints.</p>
+              <p>We're not the biggest firm in the room. We're the most precise. And for the right clients, that's the only metric that matters.</p>
+            </div>
+            <div className="mission-quote">
+              <blockquote>"The companies that will win the next decade aren't the ones with the most technology — they're the ones with the most intentional technology."</blockquote>
+              <cite>Alex Kim — Founder, Pulse IT</cite>
+            </div>
+          </div>
+        </section>
+
+        {/* Values */}
+        <section className="pit-section" style={{paddingTop:0}}>
+          <div className="section-head">
+            <h2>What We Stand For</h2>
+            <p>Four principles that shape every decision we make — from architecture to billing.</p>
+          </div>
+          <div className="values-grid">
+            {VALUES.map(v=>(
+              <div key={v.tag} className="value-card">
+                <div className="value-card__icon"><Icon name={v.icon} size={22}/></div>
+                <div>
+                  <div className="value-card__tag">{v.tag}</div>
+                  <h3 className="value-card__title">{v.title}</h3>
+                </div>
+                <p className="value-card__body">{v.body}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Timeline */}
+        <section className="pit-section" style={{paddingTop:0}}>
+          <div className="section-head">
+            <h2>How We Got Here</h2>
+            <p>Five years of building, breaking, and rebuilding — in that order.</p>
+          </div>
+          <div className="timeline">
+            {TIMELINE.map(t=>(
+              <div key={t.year} className="timeline-item">
+                <div className="timeline-item__year">{t.year}</div>
+                <h4 className="timeline-item__event">{t.event}</h4>
+                <p className="timeline-item__detail">{t.detail}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Team */}
+        <section className="pit-section" style={{paddingTop:0}}>
+          <div className="section-head">
+            <h2>The Team</h2>
+            <p>Engineers first. Consultants second. We write the code we recommend.</p>
+          </div>
+          <div className="team-grid">
+            {TEAM.map(t=>(
+              <div key={t.name} className="team-card">
+                <div className="team-avatar">{t.initials}</div>
+                <div>
+                  <h3 className="team-card__name">{t.name}</h3>
+                  <p className="team-card__role">{t.role}</p>
+                </div>
+                <span className="team-card__tag">{t.tag}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="pit-section" style={{paddingTop:0}}>
+          <div className="pit-cta">
+            <div className="pit-cta__glow"/>
+            <h2>Work With Us</h2>
+            <p>We take on a limited number of new clients each quarter. If our approach resonates, let's talk.</p>
+            <div className="pit-cta__actions">
+              <button className="pit-btn pit-btn--neon pit-btn--mono" onClick={()=>setModal(true)}>OPEN_CHANNEL</button>
+              <a className="pit-btn pit-btn--quiet" href="services.html">View Our Services</a>
+            </div>
+          </div>
+        </section>
+
+      </main>
+      <Footer/>
+      <ContactModal open={modal} onClose={()=>setModal(false)}/>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>
