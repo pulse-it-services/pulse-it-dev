@@ -525,35 +525,21 @@
       border: 1px solid var(--outline-variant)
     }
 
-    .pit-feature__shaft {
+    .pit-feature__img {
       position: absolute;
-      left: 50%;
-      top: 8%;
-      transform: translateX(-50%);
-      width: 6px;
-      height: 60%;
-      border-radius: 3px;
-      background: linear-gradient(180deg, #dffbff, rgba(76, 215, 246, .1));
-      box-shadow: 0 0 40px 8px rgba(76, 215, 246, .5)
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 35%
     }
 
     .pit-feature__media::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: repeating-linear-gradient(90deg, rgba(76, 215, 246, .05) 0 1px, transparent 1px 46px),
-        repeating-linear-gradient(0deg, rgba(76, 215, 246, .05) 0 1px, transparent 1px 46px)
-    }
-
-    .pit-feature__tag {
-      position: absolute;
-      left: 16px;
-      bottom: 14px;
-      z-index: 1;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: .08em;
-      color: var(--secondary)
+      pointer-events: none;
+      background: linear-gradient(180deg, rgba(6, 10, 20, 0) 55%, rgba(6, 10, 20, .55) 100%)
     }
 
     .pit-feature__copy {
@@ -1022,9 +1008,9 @@
     }
 
     const SERVICES = [
-      { icon: 'cloud-cog', title: 'Cloud Solutions', body: 'Scalable multi-cloud orchestration and containerized deployment strategies for zero-downtime scaling.', link: 'EXPLORE_PROTOCOL' },
-      { icon: 'shield-check', title: 'Cybersecurity', body: 'Military-grade encryption and real-time threat detection powered by autonomous monitoring systems.', link: 'SECURE_ACCESS' },
-      { icon: 'cpu', title: 'AI Integration', body: 'Seamlessly inject cognitive automation into your existing workflows to maximize operational velocity.', link: 'INITIATE_MODELS' },
+      { icon: 'headphones', title: 'IT Support Services', body: '24/7 helpdesk and proactive infrastructure monitoring that keeps your systems running, patched, and problem-free around the clock.', link: 'Explore (Read More) ->' },
+      { icon: 'layout', title: 'Web Design Solutions', body: 'Modern, high-performance websites crafted with precision design and conversion-focused layouts that make your brand stand out.', link: 'Explore (Read More) ->' },
+      { icon: 'workflow', title: 'Automation and App Development', body: 'Custom applications and workflow automation that eliminate repetitive tasks and streamline your operations end to end.', link: 'Explore (Read More) ->' },
     ];
     function ServiceCard({ s }) {
       const [hover, setHover] = React.useState(false);
@@ -1052,14 +1038,13 @@
     const PROOF = [
       { icon: 'circle-check-big', title: '99.999% Uptime Commitment', body: 'Redundant global nodes ensuring your services never skip a beat, regardless of regional incidents.' },
       { icon: 'zap', title: 'Latency Optimization', body: 'Edge computing nodes positioned at critical network junctions for sub-millisecond response times.' },
-      { icon: 'lock', title: 'Quantum-Ready Encryption', body: 'Staying three steps ahead with security protocols that anticipate the next era of computing.' },
+      { icon: 'lock', title: 'Automated Patch Management', body: 'Continuous update automation keeps every system running the latest security patches, closing vulnerability windows before they can be exploited.' },
     ];
     function Feature() {
       return (
         <section className="pit-section pit-feature">
           <div className="pit-feature__media">
-            <div className="pit-feature__shaft" />
-            <span className="pit-feature__tag">DATACENTER · NODE_07</span>
+            <img className="pit-feature__img" src="assets/tech_001.jpg" alt="Data center hardware and network infrastructure" />
           </div>
           <div className="pit-feature__copy">
             <h2 className="pit-h2 pit-h2--left">Elite Scalability<br />&amp; Performance</h2>

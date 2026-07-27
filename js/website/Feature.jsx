@@ -3,16 +3,15 @@ const PIT_PROOF = [
     body: 'Redundant global nodes ensuring your services never skip a beat, regardless of regional incidents.' },
   { icon: 'zap', title: 'Latency Optimization',
     body: 'Edge computing nodes positioned at critical network junctions for sub-millisecond response times.' },
-  { icon: 'lock', title: 'Quantum-Ready Encryption',
-    body: 'Staying three steps ahead of the curve with security protocols that anticipate the next era of computing.' },
+  { icon: 'lock', title: 'Automated Patch Management',
+    body: 'Continuous update automation keeps every system running the latest security patches, closing vulnerability windows before they can be exploited.' },
 ];
 
 function Feature() {
   return (
     <section className="pit-section pit-feature">
       <div className="pit-feature__media">
-        <div className="pit-feature__shaft" />
-        <span className="pit-feature__tag">DATACENTER · NODE_07</span>
+        <img className="pit-feature__img" src="assets/tech_001.jpg" alt="Data center hardware and network infrastructure" />
       </div>
       <div className="pit-feature__copy">
         <h2 className="pit-h2 pit-h2--left">Elite Scalability<br />&amp; Performance</h2>

@@ -103,13 +103,9 @@ main,.pit-nav,.pit-footer{position:relative;z-index:1}
 .pit-feature{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
 .pit-feature__media{position:relative;aspect-ratio:4/5;border-radius:var(--radius-lg);overflow:hidden;
   background:linear-gradient(180deg,#0a1422 0%,#060e20 100%);border:1px solid var(--outline-variant)}
-.pit-feature__shaft{position:absolute;left:50%;top:8%;transform:translateX(-50%);width:6px;height:60%;border-radius:3px;
-  background:linear-gradient(180deg,#dffbff,rgba(76,215,246,.1));box-shadow:0 0 40px 8px rgba(76,215,246,.5)}
-.pit-feature__media::after{content:"";position:absolute;inset:0;
-  background:repeating-linear-gradient(90deg,rgba(76,215,246,.05) 0 1px,transparent 1px 46px),
-            repeating-linear-gradient(0deg,rgba(76,215,246,.05) 0 1px,transparent 1px 46px)}
-.pit-feature__tag{position:absolute;left:16px;bottom:14px;z-index:1;font-family:var(--font-mono);font-size:11px;
-  letter-spacing:.08em;color:var(--secondary)}
+.pit-feature__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pit-feature__media::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(6,10,20,0) 55%,rgba(6,10,20,.55) 100%)}
 .pit-feature__copy{display:flex;flex-direction:column;gap:20px}
 .pit-proof{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:22px}
 .pit-proof__item{display:flex;gap:16px}
