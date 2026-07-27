@@ -320,20 +320,6 @@ const VALUES = [
   { icon:'zap',      tag:'VALUE_04', title:'Velocity',      body:'Speed without chaos. We ship fast, we ship right, and we never sacrifice stability for a deadline. Momentum is methodical.' },
 ];
 
-const TEAM = [
-  { initials:'AK', name:'Alex Kim',      role:'Founder & Lead Engineer',  tag:'CLOUD · SECURITY' },
-  { initials:'JM', name:'Jordan Mills',  role:'Head of Cybersecurity',    tag:'PENTEST · SIEM' },
-  { initials:'SR', name:'Sam Rivera',    role:'Web Design Lead',           tag:'REACT · PERF' },
-];
-
-const TIMELINE = [
-  { year:'2021', event:'Founded',       detail:'Started as a one-engineer consultancy serving local small businesses.' },
-  { year:'2022', event:'First Scale',   detail:'Expanded to a three-person team; launched managed IT support tier.' },
-  { year:'2023', event:'AI Practice',   detail:'Dedicated AI integration offering launched for mid-market clients.' },
-  { year:'2024', event:'Full Stack',    detail:'Web design studio merged in; now a full end-to-end IT partner.' },
-  { year:'2025', event:'Secured',       detail:'SOC 2 Type II attested. Security-forward posture company-wide.' },
-];
-
 function Footer() {
   return (
     <footer className="pit-footer">
@@ -436,7 +422,7 @@ function App() {
             </div>
             <div className="mission-quote">
               <blockquote>"The companies that will win the next decade aren't the ones with the most technology — they're the ones with the most intentional technology."</blockquote>
-              <cite>Alex Kim — Founder, Pulse IT</cite>
+              <cite>Founding Partner - Pulse IT</cite>
             </div>
           </div>
         </section>
@@ -456,43 +442,6 @@ function App() {
                   <h3 className="value-card__title">{v.title}</h3>
                 </div>
                 <p className="value-card__body">{v.body}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Timeline */}
-        <section className="pit-section" style={{paddingTop:0}}>
-          <div className="section-head">
-            <h2>How We Got Here</h2>
-            <p>Five years of building, breaking, and rebuilding — in that order.</p>
-          </div>
-          <div className="timeline">
-            {TIMELINE.map(t=>(
-              <div key={t.year} className="timeline-item">
-                <div className="timeline-item__year">{t.year}</div>
-                <h4 className="timeline-item__event">{t.event}</h4>
-                <p className="timeline-item__detail">{t.detail}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Team */}
-        <section className="pit-section" style={{paddingTop:0}}>
-          <div className="section-head">
-            <h2>The Team</h2>
-            <p>Engineers first. Consultants second. We write the code we recommend.</p>
-          </div>
-          <div className="team-grid">
-            {TEAM.map(t=>(
-              <div key={t.name} className="team-card">
-                <div className="team-avatar">{t.initials}</div>
-                <div>
-                  <h3 className="team-card__name">{t.name}</h3>
-                  <p className="team-card__role">{t.role}</p>
-                </div>
-                <span className="team-card__tag">{t.tag}</span>
               </div>
             ))}
           </div>
