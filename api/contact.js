@@ -41,22 +41,37 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ error: 'Invalid submission' });
   }
 
-  const resendRes = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      from: 'Pulse IT Website <onboarding@resend.dev>',
-      to: CONTACT_TO_EMAIL,
-      reply_to: email,
-      subject: 'New contact form submission — Pulse IT',
-      text: `From: ${email}\n\n${message}`,
-    }),
-  });
+  if (!process.env.RESEND_API_KEY) {
+    console.error('RESEND_API_KEY is not set for this deployment');
+    return res.status(500).json({ error: 'Server misconfigured' });
+  }
+
+  let resendRes;
+  try {
+    resendRes = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: 'Pulse IT Website <onboarding@resend.dev>',
+        to: CONTACT_TO_EMAIL,
+        reply_to: email,
+        subject: 'New contact form submission — Pulse IT',
+        text: `From: ${email}\n\n${message}`,
+      }),
+    });
+  } catch (err) {
+    console.error('Could not reach Resend:', err && err.message);
+    return res.status(502).json({ error: 'Failed to send' });
+  }
 
   if (!resendRes.ok) {
+    // Log Resend's reason to the Vercel function logs only; the browser just
+    // gets a generic error.
+    const detail = await resendRes.text().catch(() => '');
+    console.error('Resend rejected the request:', resendRes.status, detail.slice(0, 500));
     return res.status(502).json({ error: 'Failed to send' });
   }
 
