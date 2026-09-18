@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Portfolio — Pulse IT Consulting</title>
+<title>Terms of Service — Pulse IT Consulting</title>
+<meta name="description" content="The terms governing your use of the Pulse IT Consulting website.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -51,14 +52,17 @@ main,.pit-nav,.pit-footer{position:relative;z-index:1}
 
 .pit-eyebrow{font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;
   color:var(--tertiary);border:1px dashed rgba(236,15,255,.4);border-radius:var(--radius);padding:6px 12px;display:inline-block}
+.pit-monolink{font-family:var(--font-mono);font-size:12px;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--secondary);cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:gap var(--dur) var(--ease-out)}
+.pit-monolink:hover{gap:10px}
 .pit-logo{display:inline-flex;align-items:center;gap:11px;text-decoration:none}
 .pit-wm{font-family:var(--font-mono);font-weight:700;font-size:19px;letter-spacing:.04em;color:var(--on-surface)}
 .pit-wm span{color:var(--neon-magenta)}
 .pit-status{font-family:var(--font-mono);font-size:12px;letter-spacing:.07em;text-transform:uppercase;
   color:var(--on-surface-variant);display:inline-flex;align-items:center;gap:8px}
 .pit-pip{width:8px;height:8px;border-radius:50%;background:var(--success);box-shadow:0 0 8px var(--success);
-  animation:pit-pulse-dot 1.8s var(--ease-in-out) infinite}
-@keyframes pit-pulse-dot{0%,100%{opacity:1}50%{opacity:.3}}
+  animation:pit-pulse 1.8s var(--ease-in-out) infinite}
+@keyframes pit-pulse{0%,100%{opacity:1}50%{opacity:.3}}
 
 /* Nav */
 .pit-nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
@@ -72,87 +76,20 @@ main,.pit-nav,.pit-footer{position:relative;z-index:1}
 .pit-burger{display:none;background:none;border:none;color:var(--on-surface);cursor:pointer;padding:4px}
 .pit-mobilemenu{display:none}
 
-/* Page hero */
-.page-hero{max-width:var(--container-max);margin:0 auto;
-  padding:88px var(--margin-desktop) 72px;border-bottom:1px solid var(--outline-variant)}
-.page-hero h1{font-family:var(--font-display);font-size:clamp(40px,5.5vw,64px);font-weight:800;
-  line-height:1.04;letter-spacing:-.04em;margin:20px 0 24px;max-width:18ch}
-.page-hero p{font-family:var(--font-body);font-size:18px;line-height:1.65;
-  color:var(--on-surface-variant);max-width:54ch;margin:0}
-.page-hero__meta{display:flex;align-items:center;gap:24px;margin-top:28px;flex-wrap:wrap}
-.hero-stat{display:flex;flex-direction:column;gap:2px}
-.hero-stat__num{font-family:var(--font-display);font-size:28px;font-weight:800;letter-spacing:-.04em}
-.hero-stat__label{font-family:var(--font-mono);font-size:11px;letter-spacing:.09em;
-  text-transform:uppercase;color:var(--on-surface-variant)}
-.hero-divider{width:1px;height:36px;background:var(--outline-variant)}
-
-/* Portfolio grid */
-.pit-section{max-width:var(--container-max);margin:0 auto;padding:var(--section-gap) var(--margin-desktop)}
-.port-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
-
-/* Project card */
-.port-card{background:var(--glass-fill);backdrop-filter:blur(var(--glass-blur));
-  -webkit-backdrop-filter:blur(var(--glass-blur));border:1px solid var(--glass-border);
-  border-radius:var(--radius-xl);overflow:hidden;display:flex;flex-direction:column;
-  transition:all var(--dur) var(--ease-out);cursor:default}
-.port-card:hover{border-color:var(--pc-accent,rgba(236,15,255,.4));
-  box-shadow:0 0 40px var(--pc-glow,rgba(236,15,255,.12));transform:translateY(-4px)}
-.port-card__thumb{position:relative;height:240px;overflow:hidden;flex:none}
-.port-card__img{width:100%;height:100%;object-fit:cover;display:block;
-  transition:transform 600ms var(--ease-out)}
-.port-card:hover .port-card__img{transform:scale(1.04)}
-.port-card__overlay{position:absolute;inset:0;
-  background:linear-gradient(to bottom,rgba(6,14,32,.08) 0%,rgba(6,14,32,.72) 100%)}
-.port-card__tint{position:absolute;inset:0;opacity:.35;mix-blend-mode:color}
-.port-card__badges{position:absolute;top:16px;left:16px;display:flex;gap:8px}
-.port-badge{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
-  padding:4px 10px;border-radius:var(--radius);border:1px solid rgba(255,255,255,.18);
-  background:rgba(6,14,32,.55);backdrop-filter:blur(8px);color:var(--on-surface)}
-.port-badge--live{border-color:rgba(6,214,240,.5);color:var(--success);
-  background:rgba(6,214,240,.1);display:flex;align-items:center;gap:6px}
-.port-badge--live::before{content:'';width:6px;height:6px;border-radius:50%;
-  background:var(--success);box-shadow:0 0 6px var(--success)}
-.port-card__num{position:absolute;bottom:16px;right:20px;font-family:var(--font-display);
-  font-size:52px;font-weight:900;letter-spacing:-.06em;line-height:1;
-  color:rgba(255,255,255,.07);pointer-events:none;user-select:none}
-
-/* Card body */
-.port-card__body{padding:28px 32px 32px;display:flex;flex-direction:column;gap:14px;flex:1}
-.port-card__cat{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--on-surface-variant)}
-.port-card__title{font-family:var(--font-display);font-size:24px;font-weight:800;
-  margin:0;letter-spacing:-.02em}
-.port-card__loc{font-family:var(--font-mono);font-size:12px;letter-spacing:.06em;
-  color:var(--on-surface-variant);margin-top:-8px}
-.port-card__desc{font-family:var(--font-body);font-size:15px;line-height:1.65;
-  color:var(--on-surface-variant);margin:0;flex:1}
-.port-stack{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
-.port-stack-tag{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;
-  padding:4px 10px;border-radius:var(--radius);
-  background:rgba(255,255,255,.05);border:1px solid var(--outline-variant);
-  color:var(--on-surface-variant)}
-.port-card__foot{display:flex;align-items:center;justify-content:space-between;
-  padding-top:18px;border-top:1px solid var(--outline-variant);margin-top:auto}
-.port-link{font-family:var(--font-mono);font-size:12px;letter-spacing:.07em;
-  text-transform:uppercase;display:inline-flex;align-items:center;gap:7px;
-  text-decoration:none;transition:gap var(--dur) var(--ease-out);color:var(--pc-accent-color,var(--secondary))}
-.port-link:hover{gap:11px}
-.port-link--disabled{opacity:.45;cursor:not-allowed;pointer-events:none}
-.port-card__scope{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;
-  text-transform:uppercase;color:var(--on-surface-variant);
-  display:flex;align-items:center;gap:6px}
-
-/* CTA */
-.pit-cta{position:relative;overflow:hidden;text-align:center;border-radius:var(--radius-xl);
-  border:1px solid var(--glass-border);padding:72px 32px;
-  background:linear-gradient(180deg,rgba(34,42,61,.6),rgba(11,19,38,.6));
-  backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur))}
-.pit-cta__glow{position:absolute;inset:0;
-  background:radial-gradient(50% 120% at 50% 0%,rgba(236,15,255,.22),transparent 60%);pointer-events:none}
-.pit-cta>*{position:relative}
-.pit-cta h2{font-family:var(--font-display);font-size:42px;font-weight:700;letter-spacing:-.02em;margin:0 0 16px}
-.pit-cta p{font-family:var(--font-body);font-size:16px;line-height:1.6;color:var(--on-surface-variant);margin:0}
-.pit-cta__actions{display:flex;gap:16px;justify-content:center;margin-top:28px;flex-wrap:wrap}
+/* Legal pages */
+.legal-hero{max-width:820px;margin:0 auto;padding:88px var(--margin-desktop) 48px;border-bottom:1px solid var(--outline-variant)}
+.legal-hero h1{font-family:var(--font-display);font-size:clamp(38px,5vw,56px);font-weight:800;
+  line-height:1.05;letter-spacing:-.04em;margin:20px 0 16px}
+.legal-hero p{font-family:var(--font-mono);font-size:12px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--on-surface-variant);margin:0}
+.legal-body{max-width:820px;margin:0 auto;padding:56px var(--margin-desktop) 40px}
+.legal-body section{margin-bottom:40px}
+.legal-body h2{font-family:var(--font-display);font-size:24px;font-weight:700;letter-spacing:-.02em;margin:0 0 14px}
+.legal-body p,.legal-body li{font-family:var(--font-body);font-size:16px;line-height:1.75;color:var(--on-surface-variant)}
+.legal-body p{margin:0 0 14px}
+.legal-body ul{margin:0 0 14px;padding-left:22px}
+.legal-body li{margin-bottom:8px}
+.legal-body a{color:var(--secondary)}
 
 /* Footer */
 .pit-footer{border-top:1px solid var(--outline-variant);margin-top:60px}
@@ -190,7 +127,7 @@ main,.pit-nav,.pit-footer{position:relative;z-index:1}
 .pit-field input:focus,.pit-field textarea:focus{border-color:var(--secondary);box-shadow:var(--glow-cyan)}
 .pit-modal__done{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;padding:16px 0}
 .chk-icon{width:48px;height:48px;border-radius:50%;background:rgba(6,214,240,.12);
-  display:flex;align-items:center;justify-content:center;color:var(--success)}
+  display:flex;align-items:center;justify-content:center;color:var(--secondary)}
 @keyframes pit-fade{from{opacity:0}to{opacity:1}}
 @keyframes pit-rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 
@@ -204,15 +141,15 @@ main,.pit-nav,.pit-footer{position:relative;z-index:1}
 @keyframes pit-pulse-expand{0%{transform:scale(.15);opacity:.9}55%{opacity:.4}100%{transform:scale(2.8);opacity:0}}
 @media(prefers-reduced-motion:reduce){.pit-pulse{animation:none;opacity:0}}
 
+/* Responsive */
 @media(max-width:900px){
   .pit-navlinks,.pit-nav-cta{display:none}
   .pit-burger{display:inline-flex}
   .pit-mobilemenu{display:flex;flex-direction:column;gap:18px;position:absolute;top:100%;left:0;right:0;
     background:rgba(11,19,38,.96);backdrop-filter:blur(12px);
     padding:24px var(--margin-desktop);border-bottom:1px solid var(--outline-variant)}
-  .page-hero{padding:60px var(--margin-mobile) 48px}
-  .pit-section{padding:64px var(--margin-mobile)}
-  .port-grid{grid-template-columns:1fr}
+  .legal-hero{padding:60px var(--margin-mobile) 36px}
+  .legal-body{padding:40px var(--margin-mobile) 24px}
   .pit-footer__grid{grid-template-columns:1fr 1fr;gap:28px}
   .pit-footer__base{flex-direction:column;gap:12px;text-align:center}
 }
@@ -249,7 +186,7 @@ function PulseLayer() {
 const NAV_LINKS = [
   {label:'Services',  href:'services.html'},
   {label:'Innovation',href:null},
-  {label:'Portfolio', href:'portfolio.html'},
+  // {label:'Portfolio', href:'portfolio.html'},
   {label:'About',     href:'about.html'},
 ];
 function Nav({ active, onCta }) {
@@ -278,110 +215,7 @@ function Nav({ active, onCta }) {
   );
 }
 
-const PROJECTS = [
-  {
-    num: '01',
-    category: 'EDUCATION',
-    client: 'Riverside Academy',
-    location: 'K–8 School · Riverside, OR',
-    desc: 'A complete overhaul of an aging school website into a modern, parent-friendly hub. Features an events calendar, individual teacher pages, lunch menu feeds, and a district news board — all updated by staff through a headless CMS.',
-    stack: ['Next.js', 'Tailwind CSS', 'Sanity CMS', 'Vercel'],
-    img: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&q=80&auto=format&fit=crop',
-    tint: 'rgba(76,215,246,0.25)',
-    accentColor: '#4cd7f6',
-    accentGlow: 'rgba(76,215,246,0.18)',
-    live: false,
-    scope: 'Design · CMS · Dev',
-  },
-  {
-    num: '02',
-    category: 'LOCAL SERVICE',
-    client: 'Harbor Cuts',
-    location: 'Barbershop · Harbor City, WA',
-    desc: 'A sharp, mobile-first booking site with real-time appointment scheduling, a rotating cut gallery, and an individual barber roster. Built to surface on local search and convert walk-in discovery into confirmed bookings.',
-    stack: ['React', 'Supabase', 'Stripe', 'Netlify'],
-    img: 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=800&q=80&auto=format&fit=crop',
-    tint: 'rgba(236,15,255,0.22)',
-    accentColor: '#fbabff',
-    accentGlow: 'rgba(236,15,255,0.16)',
-    live: false,
-    scope: 'Design · Booking · Dev',
-  },
-  {
-    num: '03',
-    category: 'RETAIL',
-    client: 'The Gilded Knot',
-    location: 'Gift Boutique · Maple Falls, WA',
-    desc: 'An e-commerce storefront for a boutique gift shop specialising in handmade and locally sourced goods. Includes product filtering, seasonal collection pages, and a local pickup option wired through Shopify\'s API.',
-    stack: ['Next.js', 'Shopify API', 'Vercel', 'Klaviyo'],
-    img: 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=800&q=80&auto=format&fit=crop',
-    tint: 'rgba(251,171,255,0.2)',
-    accentColor: '#fbabff',
-    accentGlow: 'rgba(251,171,255,0.16)',
-    live: false,
-    scope: 'Design · E-commerce · Dev',
-  },
-  {
-    num: '04',
-    category: 'PROFESSIONAL SERVICES',
-    client: 'Mercer & Associates',
-    location: 'Law Firm · Seattle, WA',
-    desc: 'A trust-forward website for a boutique civil law firm — structured practice area pages, attorney bio profiles, and a gated consultation request form with a built-in conflict-check intake workflow. Compliant with Washington State Bar guidelines.',
-    stack: ['React', 'HubSpot CMS', 'Netlify', 'Zapier'],
-    img: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&q=80&auto=format&fit=crop',
-    tint: 'rgba(192,193,255,0.2)',
-    accentColor: '#c0c1ff',
-    accentGlow: 'rgba(192,193,255,0.14)',
-    live: false,
-    scope: 'Design · Intake · Dev',
-  },
-];
-
-function ProjectCard({ p }) {
-  return (
-    <div className="port-card"
-         style={{'--pc-accent':`rgba(${p.accentColor === '#4cd7f6' ? '76,215,246' : p.accentColor === '#fbabff' ? '251,171,255' : '192,193,255'},.4)`,
-                 '--pc-glow': p.accentGlow}}>
-      {/* Thumbnail */}
-      <div className="port-card__thumb">
-        <img className="port-card__img" src={p.img} alt={p.client}
-             onError={e=>{ e.target.style.display='none'; e.target.nextSibling.nextSibling.style.background=p.tint; }}/>
-        <div className="port-card__overlay"/>
-        <div className="port-card__tint" style={{background:p.tint}}/>
-        <div className="port-card__badges">
-          <span className="port-badge">{p.category}</span>
-          {p.live
-            ? <span className="port-badge port-badge--live">LIVE</span>
-            : <span className="port-badge" style={{color:'var(--warning)',borderColor:'rgba(255,194,75,.3)'}}>COMING SOON</span>
-          }
-        </div>
-        <div className="port-card__num">{p.num}</div>
-      </div>
-
-      {/* Body */}
-      <div className="port-card__body">
-        <div>
-          <div className="port-card__cat">{p.category}</div>
-          <h3 className="port-card__title">{p.client}</h3>
-          <div className="port-card__loc">{p.location}</div>
-        </div>
-        <p className="port-card__desc">{p.desc}</p>
-        <div className="port-stack">
-          {p.stack.map(s=><span key={s} className="port-stack-tag">{s}</span>)}
-        </div>
-        <div className="port-card__foot">
-          {p.live
-            ? <a className="port-link" style={{'--pc-accent-color':p.accentColor}} href="#">VIEW_LIVE <Icon name="arrow-up-right" size={13}/></a>
-            : <span className="port-link port-link--disabled" style={{'--pc-accent-color':p.accentColor}}>LINK_PENDING <Icon name="clock" size={13}/></span>
-          }
-          <span className="port-card__scope"><Icon name="layers" size={13}/>{p.scope}</span>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Footer() {
+function Footer({ onContact }) {
   return (
     <footer className="pit-footer">
       <div className="pit-footer__grid">
@@ -392,11 +226,12 @@ function Footer() {
           </a>
           <p>Advancing the standard of digital infrastructure through relentless innovation and unwavering security.</p>
         </div>
-        {[{h:'NAVIGATION',ls:['Innovation Hub','Success Stories','Engineer Docs']},{h:'LEGAL & AUDIT',ls:['Privacy Policy','Terms of Service','Security Audit']}].map(c=>(
+        {/* {[{h:'NAVIGATION',ls:['Innovation Hub','Success Stories','Engineer Docs']},{h:'LEGAL & AUDIT',ls:['Privacy Policy','Terms of Service','Security Audit']}].map(c=>(
           <div key={c.h} className="pit-footer__col"><h5>{c.h}</h5>{c.ls.map(l=><a key={l}>{l}</a>)}</div>
-        ))}
+        ))} */}
+        <div className="pit-footer__col"><h5>LEGAL</h5><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a></div>
         <div className="pit-footer__col">
-          <h5>CONTACT</h5><a>Contact Support</a>
+          <h5>CONTACT</h5><a onClick={onContact}>Contact Support</a>
           <div className="pit-footer__icons"><Icon name="git-branch" size={18}/><Icon name="share-2" size={18}/><Icon name="network" size={18}/></div>
         </div>
       </div>
@@ -408,21 +243,44 @@ function Footer() {
   );
 }
 
+const CONTACT_ENDPOINT = '/api/contact';
+
 function ContactModal({ open, onClose }) {
-  const [sent, setSent] = React.useState(false);
-  React.useEffect(()=>{ if(!open) setSent(false); },[open]);
+  const [email, setEmail] = React.useState('');
+  const [message, setMessage] = React.useState('');
+  const [website, setWebsite] = React.useState('');
+  const [status, setStatus] = React.useState('idle');
+  React.useEffect(()=>{ if(!open){ setStatus('idle'); setEmail(''); setMessage(''); setWebsite(''); } },[open]);
   if(!open) return null;
+  const submit = async () => {
+    if(!email || !message) return;
+    setStatus('sending');
+    try {
+      const res = await fetch(CONTACT_ENDPOINT, {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ email, message, website }),
+      });
+      if(!res.ok) throw new Error('request failed');
+      setStatus('sent');
+    } catch {
+      setStatus('error');
+    }
+  };
   return (
     <div className="pit-overlay" onClick={onClose}>
       <div className="pit-modal" onClick={e=>e.stopPropagation()}>
         <button className="pit-modal__x" onClick={onClose}><Icon name="x" size={18}/></button>
-        {!sent ? (<>
+        {status!=='sent' ? (<>
           <span className="pit-eyebrow">INITIATE_CONTACT</span>
           <h3 className="pit-modal__title">Talk to an Engineer</h3>
           <p className="pit-modal__sub">Tell us where you are today. We'll map the migration.</p>
-          <label className="pit-field"><span>WORK_EMAIL</span><input type="email" placeholder="you@company.com"/></label>
-          <label className="pit-field"><span>WHAT_DO_YOU_NEED</span><textarea rows="3" placeholder="IT support, a new website, cloud migration…"/></label>
-          <button className="pit-btn pit-btn--neon pit-btn--mono" style={{width:'100%'}} onClick={()=>setSent(true)}>TRANSMIT_REQUEST</button>
+          <label className="pit-field"><span>WORK_EMAIL</span><input type="email" value={email} onChange={e=>setEmail(e.target.value)} placeholder="you@company.com"/></label>
+          <label className="pit-field"><span>WHAT_DO_YOU_NEED</span><textarea rows="3" value={message} onChange={e=>setMessage(e.target.value)} placeholder="IT support, a new website, cloud migration…"/></label>
+          <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" value={website} onChange={e=>setWebsite(e.target.value)} style={{position:'absolute',left:'-9999px',width:1,height:1,opacity:0}}/>
+          {status==='error' && <p className="pit-modal__sub" style={{color:'#ff6b6b'}}>Something went wrong. Please try again or email us directly.</p>}
+          <button className="pit-btn pit-btn--neon pit-btn--mono" style={{width:'100%'}} disabled={status==='sending'} onClick={submit}>{status==='sending' ? 'TRANSMITTING…' : 'TRANSMIT_REQUEST'}</button>
+          <p className="pit-modal__sub" style={{fontSize:12,textAlign:'center'}}>By submitting, you agree to our <a href="privacy.html" style={{color:'var(--secondary)'}}>Privacy Policy</a>.</p>
         </>) : (
           <div className="pit-modal__done">
             <span className="chk-icon"><Icon name="check" size={24}/></span>
@@ -436,6 +294,59 @@ function ContactModal({ open, onClose }) {
   );
 }
 
+const SECTIONS = [
+  { title: `Acceptance of Terms`, body: [
+    `By accessing or using this website (the "Site"), operated by Pulse IT Consulting ("Pulse IT," "we," or "us"), you agree to these Terms of Service. If you don't agree, please don't use the Site.`,
+  ]},
+  { title: `Use of the Site`, body: [
+    `You agree to use the Site only for lawful purposes. You won't:`,
+    [
+      `attempt to gain unauthorized access to the Site, our systems, or other people's data;`,
+      `probe, scan, or test the vulnerability of the Site without our written permission;`,
+      `interfere with or disrupt the Site or its infrastructure, including through automated traffic or spam;`,
+      `use the contact form to send unlawful, misleading, or malicious content; or`,
+      `copy, scrape, or resell Site content except as permitted below.`,
+    ],
+  ]},
+  { title: `Information Provided Through the Site`, body: [
+    `The Site describes our services in general terms for informational purposes. Content may change without notice and isn't a binding offer, quote, or guarantee of specific results.`,
+    `Submitting the contact form doesn't create a client relationship or obligate either of us to enter into an agreement. Any services we provide will be governed by a separate written agreement or statement of work.`,
+  ]},
+  { title: `Contact Form Submissions`, body: [
+    `You confirm that the information you submit is accurate and that you have the right to share it. Please don't submit passwords, access credentials, payment card details, health information, or other sensitive data through the form. How we handle the information you send is described in our {{privacy}}.`,
+  ]},
+  { title: `Intellectual Property`, body: [
+    `The Site's content, design, text, graphics, and logos are owned by or licensed to Pulse IT and are protected by intellectual property laws. You may view and share links to the Site for personal or internal business purposes, but you may not reproduce, modify, or distribute its content without our written permission.`,
+  ]},
+  { title: `Third-Party Services and Links`, body: [
+    `The Site relies on third-party services (such as hosting, fonts, and email delivery) and may link to third-party websites. We don't control those services or sites and aren't responsible for their content or practices.`,
+  ]},
+  { title: `Disclaimer of Warranties`, body: [
+    `The Site is provided "as is" and "as available," without warranties of any kind, express or implied, including warranties of merchantability, fitness for a particular purpose, and non-infringement. We don't warrant that the Site will be uninterrupted, error-free, or free of harmful components.`,
+  ]},
+  { title: `Limitation of Liability`, body: [
+    `To the fullest extent permitted by law, Pulse IT and its owners and personnel won't be liable for any indirect, incidental, special, consequential, or punitive damages, or for lost profits, revenue, or data, arising out of your use of or inability to use the Site. Nothing in these Terms limits liability that can't be limited under applicable law.`,
+  ]},
+  { title: `Changes to the Site and These Terms`, body: [
+    `We may modify the Site or these Terms at any time. The "Last updated" date at the top shows when the Terms last changed, and continued use of the Site after a change means you accept the updated Terms.`,
+  ]},
+  { title: `Contact Us`, body: [
+    `Questions about these Terms? Email us at {{email}}.`,
+  ]},
+];
+
+const LAST_UPDATED = 'September 18, 2026';
+const CONTACT_EMAIL = 'Pulse-IT-Services@outlook.com';
+
+function Rich({ text }) {
+  return text.split(/(\{\{email\}\}|\{\{privacy\}\}|\{\{terms\}\})/).map((part, i) => {
+    if (part === '{{email}}') return <a key={i} href={'mailto:' + CONTACT_EMAIL}>{CONTACT_EMAIL}</a>;
+    if (part === '{{privacy}}') return <a key={i} href="privacy.html">Privacy Policy</a>;
+    if (part === '{{terms}}') return <a key={i} href="terms.html">Terms of Service</a>;
+    return <React.Fragment key={i}>{part}</React.Fragment>;
+  });
+}
+
 function App() {
   const [modal, setModal] = React.useState(false);
   useLucide();
@@ -443,49 +354,25 @@ function App() {
     <div className="pit-site">
       <div className="pit-bg"/>
       <PulseLayer/>
-      <Nav active="Portfolio" onCta={()=>setModal(true)}/>
+      <Nav active="" onCta={()=>setModal(true)}/>
       <main>
-        <div className="page-hero">
-          <span className="pit-eyebrow">OUR_WORK · LOCAL_IMPACT</span>
-          <h1>Real Businesses.<br/><span className="text-gradient">Real Results.</span></h1>
-          <p>From elementary schools to law firms — we build websites and technology systems for the businesses that keep communities running.</p>
-          <div className="page-hero__meta">
-            <div className="hero-stat">
-              <span className="hero-stat__num" style={{color:'var(--tertiary)'}}>4</span>
-              <span className="hero-stat__label">Featured Projects</span>
-            </div>
-            <div className="hero-divider"/>
-            <div className="hero-stat">
-              <span className="hero-stat__num" style={{color:'var(--secondary)'}}>4</span>
-              <span className="hero-stat__label">Industries</span>
-            </div>
-            <div className="hero-divider"/>
-            <div className="hero-stat">
-              <span className="hero-stat__num" style={{color:'var(--primary)'}}>100%</span>
-              <span className="hero-stat__label">Custom Built</span>
-            </div>
-          </div>
+        <div className="legal-hero">
+          <span className="pit-eyebrow">LEGAL</span>
+          <h1>Terms of Service</h1>
+          <p>Last updated: {LAST_UPDATED}</p>
         </div>
-
-        <section className="pit-section">
-          <div className="port-grid">
-            {PROJECTS.map(p=><ProjectCard key={p.num} p={p}/>)}
-          </div>
-        </section>
-
-        <section className="pit-section" style={{paddingTop:0}}>
-          <div className="pit-cta">
-            <div className="pit-cta__glow"/>
-            <h2>Your Business, Next.</h2>
-            <p>We're actively taking on new web design clients. Tell us about your business and what you need.</p>
-            <div className="pit-cta__actions">
-              <button className="pit-btn pit-btn--neon pit-btn--mono" onClick={()=>setModal(true)}>START_PROJECT</button>
-              <a className="pit-btn pit-btn--quiet" href="services.html">Explore Services</a>
-            </div>
-          </div>
-        </section>
+        <div className="legal-body">
+          {SECTIONS.map(s => (
+            <section key={s.title}>
+              <h2>{s.title}</h2>
+              {s.body.map((b, i) => Array.isArray(b)
+                ? <ul key={i}>{b.map(li => <li key={li}>{li}</li>)}</ul>
+                : <p key={i}><Rich text={b}/></p>)}
+            </section>
+          ))}
+        </div>
       </main>
-      <Footer/>
+      <Footer onContact={()=>setModal(true)}/>
       <ContactModal open={modal} onClose={()=>setModal(false)}/>
     </div>
   );

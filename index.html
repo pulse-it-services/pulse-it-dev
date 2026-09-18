@@ -944,7 +944,7 @@
     const NAV_LINKS = [
       { label: 'Services',   href: 'services.html' },
       { label: 'Innovation', href: null },
-      { label: 'Portfolio',  href: 'portfolio.html' },
+      // { label: 'Portfolio',  href: 'portfolio.html' },
       { label: 'About',      href: 'about.html' },
     ];
     function Nav({ active, onCta }) {
@@ -1019,7 +1019,7 @@
           <div className="pit-svc__icon"><Icon name={s.icon} size={22} /></div>
           <h3 className="pit-svc__title">{s.title}</h3>
           <p className="pit-svc__body">{s.body}</p>
-          <a className="pit-monolink">{s.link} <Icon name="arrow-right" size={14} /></a>
+          <a className="pit-monolink" href="services.html">{s.link} <Icon name="arrow-right" size={14} /></a>
         </article>
       );
     }
@@ -1078,7 +1078,7 @@
       );
     }
 
-    function Footer() {
+    function Footer({ onContact }) {
       return (
         <footer className="pit-footer">
           <div className="pit-footer__grid">
@@ -1089,11 +1089,12 @@
               </a>
               <p>Advancing the standard of digital infrastructure through relentless innovation and unwavering security.</p>
             </div>
-            {[{ h: 'NAVIGATION', ls: ['Innovation Hub', 'Success Stories', 'Engineer Docs'] }, { h: 'LEGAL & AUDIT', ls: ['Privacy Policy', 'Terms of Service', 'Security Audit'] }].map(c => (
+            {/* {[{ h: 'NAVIGATION', ls: ['Innovation Hub', 'Success Stories', 'Engineer Docs'] }, { h: 'LEGAL & AUDIT', ls: ['Privacy Policy', 'Terms of Service', 'Security Audit'] }].map(c => (
               <div key={c.h} className="pit-footer__col"><h5>{c.h}</h5>{c.ls.map(l => <a key={l}>{l}</a>)}</div>
-            ))}
-            <div className="pit-footer__col">
-              <h5>CONTACT</h5><a>Contact Support</a>
+            ))} */}
+            <div className="pit-footer__col"><h5>LEGAL</h5><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a></div>
+        <div className="pit-footer__col">
+              <h5>CONTACT</h5><a onClick={onContact}>Contact Support</a>
               <div className="pit-footer__icons"><Icon name="git-branch" size={18} /><Icon name="share-2" size={18} /><Icon name="network" size={18} /></div>
             </div>
           </div>
@@ -1105,21 +1106,44 @@
       );
     }
 
+    const CONTACT_ENDPOINT = '/api/contact';
+
     function ContactModal({ open, onClose }) {
-      const [sent, setSent] = React.useState(false);
-      React.useEffect(() => { if (!open) setSent(false); }, [open]);
+      const [email, setEmail] = React.useState('');
+      const [message, setMessage] = React.useState('');
+  const [website, setWebsite] = React.useState('');
+      const [status, setStatus] = React.useState('idle');
+      React.useEffect(() => { if (!open) { setStatus('idle'); setEmail(''); setMessage(''); setWebsite(''); } }, [open]);
       if (!open) return null;
+      const submit = async () => {
+        if (!email || !message) return;
+        setStatus('sending');
+        try {
+          const res = await fetch(CONTACT_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, message, website }),
+          });
+          if (!res.ok) throw new Error('request failed');
+          setStatus('sent');
+        } catch {
+          setStatus('error');
+        }
+      };
       return (
         <div className="pit-overlay" onClick={onClose}>
           <div className="pit-modal" onClick={e => e.stopPropagation()}>
             <button className="pit-modal__x" onClick={onClose}><Icon name="x" size={18} /></button>
-            {!sent ? (<>
+            {status !== 'sent' ? (<>
               <span className="pit-eyebrow">INITIATE_CONTACT</span>
               <h3 className="pit-modal__title">Talk to an Engineer</h3>
               <p className="pit-modal__sub">Tell us where you are today. We'll map the migration.</p>
-              <label className="pit-field"><span>WORK_EMAIL</span><input type="email" placeholder="you@company.com" /></label>
-              <label className="pit-field"><span>WHAT_DO_YOU_NEED</span><textarea rows="3" placeholder="IT support, a new website, cloud migration…" /></label>
-              <button className="pit-btn pit-btn--neon pit-btn--mono" style={{ width: '100%' }} onClick={() => setSent(true)}>TRANSMIT_REQUEST</button>
+              <label className="pit-field"><span>WORK_EMAIL</span><input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="you@company.com" /></label>
+              <label className="pit-field"><span>WHAT_DO_YOU_NEED</span><textarea rows="3" value={message} onChange={e => setMessage(e.target.value)} placeholder="IT support, a new website, cloud migration…" /></label>
+              <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" value={website} onChange={e=>setWebsite(e.target.value)} style={{position:'absolute',left:'-9999px',width:1,height:1,opacity:0}}/>
+          {status === 'error' && <p className="pit-modal__sub" style={{ color: '#ff6b6b' }}>Something went wrong. Please try again or email us directly.</p>}
+              <button className="pit-btn pit-btn--neon pit-btn--mono" style={{ width: '100%' }} disabled={status === 'sending'} onClick={submit}>{status === 'sending' ? 'TRANSMITTING…' : 'TRANSMIT_REQUEST'}</button>
+          <p className="pit-modal__sub" style={{fontSize:12,textAlign:'center'}}>By submitting, you agree to our <a href="privacy.html" style={{color:'var(--secondary)'}}>Privacy Policy</a>.</p>
             </>) : (
               <div className="pit-modal__done">
                 <span className="pit-proof__icon" style={{ width: 48, height: 48 }}><Icon name="check" size={24} color="var(--secondary)" /></span>
@@ -1147,7 +1171,7 @@
             <Feature />
             <Cta onCta={() => setModal(true)} />
           </main>
-          <Footer />
+          <Footer onContact={() => setModal(true)} />
           <ContactModal open={modal} onClose={() => setModal(false)} />
         </div>
       );
