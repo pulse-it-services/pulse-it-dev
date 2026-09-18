@@ -2,12 +2,18 @@
 // and relays it to Resend. RESEND_API_KEY is a Vercel environment variable
 // (Project Settings → Environment Variables) and never reaches the browser.
 //
-// NOTE: while the Resend account is on the sandbox sender
-// (onboarding@resend.dev, no verified domain), Resend only delivers to the
-// email address the Resend account was signed up with — not CONTACT_TO_EMAIL
-// below — until a sending domain is verified.
+// Vercel environment variables (all optional except RESEND_API_KEY):
+//   CONTACT_TO_EMAIL    where submissions are delivered
+//   CONTACT_FROM_EMAIL  sender, e.g. "Pulse IT Website <website@yourdomain.com>"
+//
+// NOTE: until a domain is verified in Resend, the default sandbox sender
+// (onboarding@resend.dev) can only deliver to the address the Resend account
+// was created with. To test before then, set CONTACT_TO_EMAIL to that address.
+// After verifying a domain, set CONTACT_FROM_EMAIL to an address on it and
+// CONTACT_TO_EMAIL back to the Outlook inbox (or remove it to use the default).
 
-const CONTACT_TO_EMAIL = 'Pulse-IT-Services@outlook.com';
+const CONTACT_TO_EMAIL = process.env.CONTACT_TO_EMAIL || 'Pulse-IT-Services@outlook.com';
+const CONTACT_FROM_EMAIL = process.env.CONTACT_FROM_EMAIL || 'Pulse IT Website <onboarding@resend.dev>';
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 module.exports = async function handler(req, res) {
@@ -55,7 +61,7 @@ module.exports = async function handler(req, res) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: 'Pulse IT Website <onboarding@resend.dev>',
+        from: CONTACT_FROM_EMAIL,
         to: CONTACT_TO_EMAIL,
         reply_to: email,
         subject: 'New contact form submission — Pulse IT',
